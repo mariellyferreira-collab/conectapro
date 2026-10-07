@@ -40,15 +40,16 @@
             display: flex;
             flex-direction: column;
             font-family: "Trebuchet MS", "Segoe UI", sans-serif;
-            background: linear-gradient(180deg, #f6f3ff 0%, #f4f0ff 100%);
+            background: #f3f7fb;
             color: var(--texto);
         }
 
         .topo {
-            background: linear-gradient(180deg, #2f2a63 0%, #2d2a63 100%);
-            color: white;
-            padding: 0 7%;
-            box-shadow: 0 8px 26px rgba(42, 31, 93, 0.12);
+            background: #fff;
+            color: var(--texto);
+            padding: 0 5%;
+            border-bottom: 1px solid #dfe7ef;
+            box-shadow: 0 4px 14px rgba(24, 52, 84, 0.06);
             position: sticky;
             top: 0;
             z-index: 110;
@@ -56,32 +57,32 @@
 
         .topo-conteudo {
             width: min(1360px, 100%);
-            min-height: 96px;
+            min-height: 82px;
             margin: 0 auto;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 26px;
+            gap: 20px;
         }
 
         .marca {
             display: flex;
             align-items: center;
-            gap: 14px;
-            color: white;
+            gap: 12px;
+            color: var(--azul-noite);
             text-decoration: none;
             min-width: 0;
         }
 
         .marca-simbolo {
-            width: 54px;
-            height: 54px;
+            width: 48px;
+            height: 48px;
             display: grid;
             place-items: center;
             flex: 0 0 auto;
-            border-radius: 16px;
-            background: linear-gradient(135deg, #a48af8 0%, #7b67d9 100%);
-            box-shadow: inset 0 0 0 2px rgba(255,255,255,0.25), 0 8px 18px rgba(99, 79, 184, 0.32);
+            border-radius: 13px;
+            background: linear-gradient(135deg, #5144b8 0%, #2d2a63 100%);
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.18), 0 5px 12px rgba(45, 42, 99, 0.18);
             color: white;
         }
 
@@ -117,15 +118,15 @@
             width: 100%;
             gap: 8px;
             padding: 5px 6px 5px 14px;
-            border: 1px solid rgba(255, 255, 255, 0.34);
-            border-radius: 14px;
-            background: rgba(255, 255, 255, 0.97);
-            box-shadow: 0 8px 20px rgba(13, 20, 65, 0.18);
+            border: 1px solid #d6e0ea;
+            border-radius: 10px;
+            background: #f8fafc;
+            box-shadow: none;
         }
 
         .pesquisa-formulario:focus-within {
-            outline: 3px solid rgba(164, 138, 248, 0.68);
-            outline-offset: 3px;
+            outline: 3px solid rgba(8, 118, 223, 0.2);
+            outline-offset: 1px;
         }
 
         .pesquisa-formulario input {
@@ -700,11 +701,11 @@
 
         .marca-texto strong {
             display: block;
-            font-size: clamp(2rem, 2.8vw, 3.1rem);
-            line-height: 1;
-            letter-spacing: -0.04em;
-            color: white;
-            font-weight: 900;
+            font-size: 1.55rem;
+            line-height: 1.15;
+            letter-spacing: 0;
+            color: #2d2a63;
+            font-weight: 800;
         }
 
         .marca-texto strong span {
@@ -713,8 +714,9 @@
 
         .marca-texto small {
             display: block;
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 0.82rem;
+            color: #64748b;
+            font-size: 0.75rem;
+            line-height: 1.35;
         }
 
         .navegacao {
@@ -727,13 +729,13 @@
 
         .nav-link {
             border: 0;
-            padding: 12px 16px;
+            padding: 10px 12px;
             background: transparent;
-            color: rgba(255,255,255,0.92);
+            color: #56527a;
             font: inherit;
-            font-size: 1.02rem;
+            font-size: 0.9rem;
             cursor: pointer;
-            border-radius: 10px;
+            border-radius: 8px;
             transition: all 180ms ease;
             position: relative;
         }
@@ -741,19 +743,19 @@
         .nav-link.is-active,
         .nav-link:hover,
         .nav-link:focus-visible {
-            color: white;
-            background: rgba(255,255,255,0.05);
+            color: #2d2a63;
+            background: #f3f0ff;
         }
 
         .nav-link.is-active::after {
             content: "";
             position: absolute;
-            left: 18px;
-            right: 18px;
-            bottom: 6px;
-            height: 3px;
+            left: 12px;
+            right: 12px;
+            bottom: 3px;
+            height: 2px;
             border-radius: 999px;
-            background: #b7a2ff;
+            background: #7d6af9;
         }
 
         .acessibilidade {
@@ -785,9 +787,9 @@
             flex: 1;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            padding: 28px 7% 18px;
-            background: linear-gradient(180deg, rgba(255,255,255,0.35) 0%, rgba(232,225,252,0.55) 100%);
+            justify-content: flex-start;
+            padding: 16px 5% 32px;
+            background: linear-gradient(180deg, #fbfaff 0%, #f2effa 100%);
         }
 
         .hero-layout,
@@ -798,10 +800,10 @@
 
         .hero-layout {
             display: grid;
-            grid-template-columns: 1.15fr 0.85fr;
+            grid-template-columns: minmax(0, 1.1fr) minmax(340px, 0.9fr);
             align-items: center;
-            gap: 20px;
-            min-height: 640px;
+            gap: 32px;
+            min-height: 540px;
         }
 
         .hero-copy {
@@ -835,10 +837,10 @@
         .principal h2 {
             max-width: 720px;
             color: #2d2a63;
-            font-size: clamp(3.4rem, 6vw, 8rem);
-            line-height: 0.9;
-            letter-spacing: -0.065em;
-            margin: 0 0 22px;
+            font-size: clamp(3rem, 5vw, 4.6rem);
+            line-height: 1;
+            letter-spacing: 0;
+            margin: 0 0 16px;
             font-weight: 900;
         }
 
@@ -849,39 +851,39 @@
 
         .hero-descricao {
             max-width: 690px;
-            margin: 0 0 18px;
-            color: rgba(45, 42, 99, 0.82);
-            font-size: clamp(1.2rem, 2vw, 2.1rem);
-            line-height: 1.45;
+            margin: 0 0 12px;
+            color: #405a73;
+            font-size: clamp(1.1rem, 1.7vw, 1.4rem);
+            line-height: 1.5;
         }
 
         .hero-introducao {
-            max-width: 620px;
-            margin: 0 0 28px;
-            padding: 16px 18px;
-            border-left: 4px solid #7d6af9;
-            border-radius: 14px;
-            background: rgba(125, 106, 249, 0.08);
-            color: #2f2a63;
-            font-size: 1rem;
-            line-height: 1.6;
-            font-weight: 700;
+            max-width: 610px;
+            margin: 0 0 20px;
+            padding: 11px 14px;
+            border-left: 3px solid #7d6af9;
+            border-radius: 0 10px 10px 0;
+            background: rgba(125, 106, 249, 0.07);
+            color: #403b68;
+            font-size: 0.94rem;
+            line-height: 1.55;
+            font-weight: 500;
         }
 
         .suporte-strip {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 14px;
-            margin: 24px 0 0;
+            gap: 10px;
+            margin: 18px 0 0;
             width: min(760px, 100%);
         }
 
         .suporte-item {
-            padding: 16px 18px;
-            border: 1px solid rgba(125, 106, 249, 0.15);
-            border-radius: 18px;
-            background: rgba(255, 255, 255, 0.8);
-            box-shadow: 0 10px 22px rgba(45, 42, 99, 0.05);
+            padding: 13px 14px;
+            border: 1px solid #dce5ed;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.88);
+            box-shadow: 0 5px 14px rgba(24, 52, 84, 0.04);
         }
 
         .suporte-item strong {
@@ -899,18 +901,18 @@
 
         .como-funciona {
             width: min(1360px, 100%);
-            margin: 8px auto 0;
+            margin: 24px auto 0;
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 18px;
+            gap: 14px;
         }
 
         .como-funciona-card {
-            padding: 22px 20px;
-            border: 1px solid rgba(73, 60, 146, 0.1);
-            border-radius: 20px;
-            background: linear-gradient(180deg, rgba(255,255,255,0.82) 0%, rgba(244,241,255,0.82) 100%);
-            box-shadow: 0 12px 26px rgba(39, 29, 88, 0.05);
+            padding: 20px 18px;
+            border: 1px solid #dce5ed;
+            border-radius: 12px;
+            background: #fff;
+            box-shadow: 0 6px 16px rgba(24, 52, 84, 0.04);
         }
 
         .como-funciona-numero {
@@ -920,8 +922,10 @@
             height: 34px;
             margin-bottom: 12px;
             border-radius: 10px;
-            background: linear-gradient(135deg, #7d6af9 0%, #5d4da0 100%);
-            color: #fff;
+            background: #eaf2f8;
+            border: 1px solid #d4e1ec;
+            border-radius: 50%;
+            color: #315b83;
             font-weight: 800;
         }
 
@@ -1296,21 +1300,20 @@
 
         .botao-informar,
         .botao-ajuda {
-            min-height: 72px;
+            min-height: 60px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 14px;
-            border: none;
-            border-radius: 18px;
-            padding: 20px 26px;
+            gap: 11px;
+            border-radius: 12px;
+            padding: 15px 20px;
             font: inherit;
-            font-size: 1.1rem;
+            font-size: 0.98rem;
             font-weight: 800;
-            letter-spacing: 0.02em;
+            letter-spacing: 0;
             cursor: pointer;
             transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
-            box-shadow: 0 12px 25px rgba(95, 79, 178, 0.2);
+            box-shadow: 0 7px 16px rgba(24, 52, 84, 0.1);
         }
 
         .botao-informar:hover,
@@ -1320,15 +1323,67 @@
         }
 
         .botao-informar {
-            background: linear-gradient(135deg, #f9db4a 0%, #f4cf3d 100%);
-            color: #1d2548;
-            min-width: 310px;
+            min-width: 215px;
+            border: 1px solid #d0c9eb;
+            background: #fff;
+            color: #40378d;
+            box-shadow: none;
+        }
+
+        .botao-informar .botao-icone {
+            background: #f0edff;
+            color: #5144b8;
+        }
+
+        .botao-informar:hover,
+        .botao-informar:focus-visible {
+            border-color: #9b8be1;
+            background: #fbfaff;
+            box-shadow: 0 6px 14px rgba(81, 68, 184, 0.1);
         }
 
         .botao-ajuda {
             background: linear-gradient(135deg, #f24a59 0%, #dd2d3d 100%);
             color: white;
-            min-width: 295px;
+            min-width: 255px;
+            border: 1px solid #d52c3b;
+            box-shadow: 0 9px 19px rgba(213, 44, 59, 0.2);
+        }
+
+        .botao-comecar {
+            min-height: 54px;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            width: fit-content;
+            padding: 10px 16px;
+            border: 1px solid #cfc8e8;
+            border-radius: 10px;
+            background: #f0edff;
+            color: #40378d;
+            box-shadow: 0 4px 10px rgba(45, 42, 99, 0.06);
+            font: inherit;
+            font-weight: 800;
+            cursor: pointer;
+            transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+        }
+
+        .inicio-guia {
+            width: min(1360px, 100%);
+            margin: 0 auto 14px;
+        }
+
+        .botao-comecar:hover,
+        .botao-comecar:focus-visible {
+            transform: translateY(-2px);
+            border-color: #9b8be1;
+            background: #e9e4ff;
+            box-shadow: 0 7px 14px rgba(45, 42, 99, 0.12);
+        }
+
+        .botao-comecar:focus-visible {
+            outline: 3px solid rgba(8, 118, 223, 0.45);
+            outline-offset: 3px;
         }
 
         .botao-icone {
@@ -1359,7 +1414,7 @@
 
         .hero-art {
             position: relative;
-            min-height: 560px;
+            min-height: 460px;
             display: grid;
             place-items: center;
             overflow: hidden;
@@ -1388,7 +1443,7 @@
 
         .shield-scene {
             position: relative;
-            width: min(520px, 100%);
+            width: min(460px, 100%);
             aspect-ratio: 1;
             display: grid;
             place-items: center;
@@ -1921,6 +1976,127 @@
             margin-bottom: 8px;
         }
 
+        .publico-lista {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+            margin: 16px 0;
+        }
+
+        .publico-lista .opcao {
+            min-height: 96px;
+            align-items: center;
+            gap: 12px;
+            margin: 0;
+            padding: 14px;
+            border: 1px solid #d5e0e9;
+            border-radius: 12px;
+            background: #fff;
+            color: #294c6b;
+            box-shadow: 0 4px 12px rgba(24, 52, 84, 0.04);
+            font-size: 0.92rem;
+            line-height: 1.45;
+            transition: border-color 160ms ease, background 160ms ease, box-shadow 160ms ease;
+        }
+
+        .publico-lista .opcao:hover,
+        .publico-lista .opcao:focus-visible {
+            border-color: #9db6ca;
+            background: #f8fafc;
+            box-shadow: 0 7px 16px rgba(24, 52, 84, 0.08);
+        }
+
+        .publico-lista .publico-opcao[data-publico] {
+            align-items: flex-start;
+        }
+
+        .publico-lista .publico-opcao[data-publico] > span:nth-child(2),
+        .publico-lista .publico-opcao[data-publico-assunto] > span:first-child {
+            flex: 1;
+        }
+
+        .publico-lista .publico-opcao[data-publico] .icone {
+            width: 40px;
+            height: 40px;
+            border-radius: 11px;
+            background: #f0edff;
+            color: #5144b8;
+        }
+
+        .publico-lista .publico-opcao .seta {
+            color: #59738a;
+        }
+
+        .publico-lista .publico-opcao[data-publico] .seta {
+            margin-top: 9px;
+        }
+
+        .publico-lista .opcao:not([data-publico]) {
+            min-height: 58px;
+        }
+
+        .publico-lista .opcao:not([data-publico]) .seta {
+            margin-left: auto;
+        }
+
+        .publico-lista[hidden],
+        .publico-area[hidden],
+        .publico-detalhe[hidden] {
+            display: none !important;
+        }
+
+        .publico-voltar {
+            display: inline-flex;
+            align-items: center;
+            margin: 0 0 12px;
+            padding: 9px 13px;
+            border: 1px solid #cbd8e8;
+            border-radius: 9px;
+            background: #fff;
+            color: #123b70;
+            font: inherit;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .publico-voltar:hover,
+        .publico-voltar:focus-visible {
+            background: #eef4fc;
+        }
+
+        .publico-voltar:focus-visible,
+        .publico-opcao:focus-visible {
+            outline: 3px solid rgba(8, 118, 223, 0.45);
+            outline-offset: 2px;
+        }
+
+        .publico-introducao {
+            color: #52657c;
+        }
+
+        .publico-detalhe {
+            margin-top: 12px;
+            padding: 16px;
+            border: 1px solid #dce5ef;
+            border-radius: 12px;
+            background: #f8faff;
+        }
+
+        .publico-detalhe h5 {
+            margin: 0 0 8px;
+            color: #123b70;
+            font-size: 1.05rem;
+            line-height: 1.4;
+        }
+
+        .publico-detalhe p {
+            margin-bottom: 10px;
+        }
+
+        .publico-detalhe ul {
+            margin: 10px 0 0 20px;
+        }
+
         .acolhimento {
             background: #eff6ff;
             border-left: 4px solid #2563eb;
@@ -1938,6 +2114,75 @@
             margin-top: 15px;
             cursor: pointer;
             font-weight: bold;
+        }
+
+        .por-onde-voltar {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            margin: 0 0 14px;
+            padding: 9px 13px;
+            border: 1px solid #cbd8e8;
+            border-radius: 9px;
+            background: #fff;
+            color: #123b70;
+            font: inherit;
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .por-onde-voltar:hover,
+        .por-onde-voltar:focus-visible {
+            background: #eef4fc;
+        }
+
+        .por-onde-voltar:focus-visible {
+            outline: 3px solid rgba(8, 118, 223, 0.45);
+            outline-offset: 2px;
+        }
+
+        .por-onde-voltar[hidden] {
+            display: none;
+        }
+
+        #modalPorOnde .modal-conteudo {
+            max-width: 680px;
+        }
+
+        .por-onde-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .por-onde-card.opcao {
+            min-height: 132px;
+            align-items: flex-start;
+            margin: 0;
+            padding: 17px;
+        }
+
+        .por-onde-card .icone {
+            width: 42px;
+            height: 42px;
+        }
+
+        .por-onde-texto {
+            display: grid;
+            gap: 6px;
+        }
+
+        .por-onde-texto strong {
+            font-size: 0.94rem;
+            line-height: 1.35;
+        }
+
+        .por-onde-texto small {
+            color: #52657c;
+            font-size: 0.82rem;
+            font-weight: 400;
+            line-height: 1.5;
         }
 
         .rodape {
@@ -2178,15 +2423,33 @@
                 grid-template-columns: 1fr;
             }
 
+            .publico-lista {
+                grid-template-columns: 1fr;
+            }
+
+            .como-funciona {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
             .botoes-principais {
                 align-items: stretch;
             }
 
             .botao-informar,
-            .botao-ajuda {
+            .botao-ajuda,
+            .botao-comecar {
                 width: 100%;
                 min-width: 0;
                 min-height: 58px;
+            }
+
+            .por-onde-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .por-onde-card.opcao {
+                min-height: 0;
             }
 
             .beneficios {
@@ -2246,15 +2509,71 @@
         }
 
         @media (max-width: 420px) {
+            .topo-conteudo {
+                gap: 5px;
+            }
+
+            .marca-texto > span {
+                display: none;
+            }
+
+            .pesquisa-formulario {
+                padding-top: 3px;
+                padding-bottom: 3px;
+            }
+
+            .pesquisa-formulario button {
+                width: 36px;
+                height: 36px;
+            }
+
             .navegacao {
                 display: grid;
                 grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 2px 6px;
             }
 
             .nav-link {
                 width: 100%;
                 min-width: 0;
+                padding: 8px 6px;
                 text-align: center;
+            }
+
+            .principal {
+                padding-top: 24px;
+            }
+
+            .hero-etiqueta {
+                margin-bottom: 12px;
+            }
+
+            .principal h2 {
+                margin-bottom: 10px;
+                font-size: 36px;
+            }
+
+            .hero-descricao {
+                margin-bottom: 12px;
+                font-size: 16px;
+            }
+
+            .hero-introducao {
+                margin-bottom: 14px;
+                padding-left: 12px;
+                font-size: 0.88rem;
+                line-height: 1.5;
+            }
+
+            .botao-informar,
+            .botao-ajuda {
+                min-height: 58px;
+                padding: 10px 14px;
+            }
+
+            .botao-icone {
+                width: 36px;
+                height: 36px;
             }
 
             .beneficio,
@@ -2276,6 +2595,590 @@
                 transition-duration: 0.01ms !important;
                 animation-duration: 0.01ms !important;
             }
+        }
+
+        :root {
+            --violeta-luz: #c084fc;
+            --violeta: #a855f7;
+            --violeta-profundo: #51227c;
+            --fundo-noite: #09070e;
+            --painel-noite: #110d19;
+            --painel-elevado: #191225;
+            --borda-violeta: rgba(168, 85, 247, 0.32);
+            --texto-noite: #f4edff;
+            --texto-noite-suave: #c0b2d3;
+            --vlibras-btn-focus-visible-shadow: 0 0 0 3px #a855f7;
+        }
+
+        body {
+            background: var(--fundo-noite);
+            color: var(--texto-noite);
+        }
+
+        .topo {
+            background: linear-gradient(100deg, #160d24 0%, #241039 55%, #170d24 100%);
+            color: var(--texto-noite);
+            border-bottom: 1px solid var(--borda-violeta);
+            box-shadow: 0 5px 24px rgba(6, 3, 12, 0.48), 0 1px 0 rgba(192, 132, 252, 0.08);
+        }
+
+        .marca {
+            color: var(--texto-noite);
+        }
+
+        .marca-simbolo {
+            background: linear-gradient(145deg, #a855f7 0%, #51227c 100%);
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2), 0 0 20px rgba(168, 85, 247, 0.38);
+        }
+
+        .marca-texto strong {
+            color: #fff;
+        }
+
+        .marca-texto small {
+            color: #cbb9df;
+        }
+
+        .pesquisa-formulario {
+            border-color: rgba(192, 132, 252, 0.3);
+            background: #130d1e;
+            box-shadow: inset 0 0 0 1px rgba(168, 85, 247, 0.04);
+        }
+
+        .pesquisa-formulario:focus-within {
+            outline-color: rgba(192, 132, 252, 0.42);
+        }
+
+        .pesquisa-formulario input {
+            color: var(--texto-noite);
+        }
+
+        .pesquisa-formulario input::placeholder {
+            color: #a999bd;
+        }
+
+        .pesquisa-formulario button {
+            background: linear-gradient(145deg, #a855f7, #6d28a8);
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.28);
+        }
+
+        .pesquisa-formulario button:hover,
+        .pesquisa-formulario button:focus-visible {
+            background: #7e35c0;
+        }
+
+        .nav-link {
+            color: #d4c7e4;
+        }
+
+        .nav-link.is-active,
+        .nav-link:hover,
+        .nav-link:focus-visible {
+            color: #fff;
+            background: rgba(168, 85, 247, 0.16);
+        }
+
+        .nav-link.is-active::after {
+            background: var(--violeta-luz);
+            box-shadow: 0 0 10px rgba(192, 132, 252, 0.8);
+        }
+
+        .pesquisa-conteudo {
+            border-color: var(--borda-violeta);
+            background: #120d1b;
+            color: var(--texto-noite);
+            box-shadow: 0 22px 60px rgba(0, 0, 0, 0.62), 0 0 22px rgba(127, 51, 177, 0.14);
+        }
+
+        .pesquisa-cabecalho h2,
+        .pesquisa-resultado h3 {
+            color: #e6c8ff;
+        }
+
+        .pesquisa-fechar {
+            background: #251735;
+            color: #f3eaff;
+        }
+
+        .pesquisa-mensagem,
+        .pesquisa-resultado p {
+            color: var(--texto-noite-suave);
+        }
+
+        .pesquisa-resultado,
+        .pesquisa-visualizacao {
+            border-color: var(--borda-violeta);
+            background: #191225;
+        }
+
+        .pesquisa-resultado button,
+        .pesquisa-voltar {
+            background: #6d28a8;
+            color: #fff;
+        }
+
+        .pesquisa-resultado button:hover,
+        .pesquisa-voltar:hover {
+            background: #8137c2;
+        }
+
+        .principal {
+            background: linear-gradient(145deg, #0d0914 0%, #130b1d 52%, #09070e 100%);
+            color: var(--texto-noite);
+        }
+
+        .botao-comecar {
+            border-color: rgba(192, 132, 252, 0.66);
+            background: linear-gradient(110deg, #8a35c9 0%, #51227c 100%);
+            color: #fff;
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+        }
+
+        .botao-comecar .botao-icone {
+            background: rgba(255, 255, 255, 0.14);
+            color: #fff;
+        }
+
+        .botao-comecar:hover,
+        .botao-comecar:focus-visible {
+            border-color: #e1b8ff;
+            background: linear-gradient(110deg, #9b46dc 0%, #60298d 100%);
+            box-shadow: 0 0 26px rgba(168, 85, 247, 0.42);
+        }
+
+        .hero-etiqueta {
+            color: #d9adff;
+        }
+
+        .hero-etiqueta::before {
+            background: linear-gradient(90deg, #8a35c9 0%, #d98aff 100%);
+            box-shadow: 0 0 12px rgba(168, 85, 247, 0.55);
+        }
+
+        .principal h2 {
+            color: #f6efff;
+        }
+
+        .principal h2 span {
+            color: #c084fc;
+            text-shadow: 0 0 24px rgba(168, 85, 247, 0.3);
+        }
+
+        .hero-descricao {
+            color: #d0c4df;
+        }
+
+        .hero-introducao {
+            border-left-color: #a855f7;
+            background: rgba(115, 53, 164, 0.19);
+            color: #e1d4ef;
+        }
+
+        .botao-informar {
+            border-color: rgba(192, 132, 252, 0.54);
+            background: #181122;
+            color: #e9d5ff;
+        }
+
+        .botao-informar .botao-icone {
+            background: rgba(168, 85, 247, 0.19);
+            color: #d8a8ff;
+        }
+
+        .botao-informar:hover,
+        .botao-informar:focus-visible {
+            border-color: #c084fc;
+            background: #21152f;
+            box-shadow: 0 0 18px rgba(168, 85, 247, 0.2);
+        }
+
+        .botao-ajuda {
+            background: linear-gradient(115deg, #f34c61 0%, #c92345 100%);
+            border-color: #ff7282;
+            box-shadow: 0 0 20px rgba(232, 44, 75, 0.26);
+        }
+
+        .suporte-item,
+        .como-funciona-card,
+        .beneficio {
+            border-color: rgba(168, 85, 247, 0.25);
+            background: linear-gradient(145deg, #171020 0%, #110d19 100%);
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.025);
+        }
+
+        .suporte-item strong,
+        .como-funciona-card h3,
+        .beneficio strong {
+            color: #eee2fa;
+        }
+
+        .suporte-item span,
+        .como-funciona-card p,
+        .beneficio span:last-child {
+            color: #b9abc9;
+        }
+
+        .como-funciona-numero {
+            border-color: rgba(216, 168, 255, 0.35);
+            background: linear-gradient(145deg, #8a35c9, #51227c);
+            color: #fff;
+            box-shadow: 0 0 16px rgba(168, 85, 247, 0.24);
+        }
+
+        .biblioteca {
+            border-color: var(--borda-violeta);
+            background: linear-gradient(145deg, #120d1b 0%, #0d0914 100%);
+            box-shadow: 0 14px 32px rgba(0, 0, 0, 0.28), 0 0 22px rgba(127, 51, 177, 0.1);
+        }
+
+        .biblioteca-etiqueta {
+            color: #cf9cff;
+        }
+
+        .biblioteca h3 {
+            color: #f2eaff;
+        }
+
+        .biblioteca-card {
+            border-color: rgba(168, 85, 247, 0.28);
+            background: linear-gradient(150deg, #1d142a 0%, #130e1d 100%);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.035);
+            color: var(--texto-noite);
+        }
+
+        .biblioteca-card:hover,
+        .biblioteca-card:focus-visible {
+            border-color: rgba(192, 132, 252, 0.76);
+            background: linear-gradient(150deg, #29183a 0%, #181022 100%);
+            box-shadow: 0 0 22px rgba(168, 85, 247, 0.2);
+        }
+
+        .biblioteca-card h4 {
+            color: #f2e8ff;
+        }
+
+        .biblioteca-card p,
+        .biblioteca-detalhe p,
+        .biblioteca-detalhe li,
+        .biblioteca-seguranca-intro {
+            color: #c1b3d1;
+        }
+
+        .biblioteca-icone {
+            border-color: rgba(226, 190, 255, 0.25);
+            background: linear-gradient(145deg, #a855f7 0%, #51227c 100%);
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .biblioteca-conteudo {
+            border-color: var(--borda-violeta);
+            background: #100b18;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+        }
+
+        .biblioteca-detalhe h4,
+        .biblioteca-seguranca-tema h5,
+        .biblioteca-direitos-tema h5,
+        .biblioteca-risco-tema h5,
+        .biblioteca-ajuda-tema h5 {
+            color: #e7caff;
+        }
+
+        .biblioteca-seguranca-tema,
+        .biblioteca-direitos-tema,
+        .biblioteca-risco-tema,
+        .biblioteca-ajuda-tema {
+            border-color: var(--borda-violeta);
+            background: linear-gradient(145deg, #191225, #110d19);
+        }
+
+        .biblioteca-risco-resposta,
+        .biblioteca-ajuda-resposta {
+            border-left-color: #a855f7;
+            background: #21152f;
+        }
+
+        .biblioteca-risco-resposta h6,
+        .biblioteca-ajuda-resposta h6 {
+            color: #e7caff;
+        }
+
+        .biblioteca-voltar,
+        .biblioteca-seguranca-voltar,
+        .biblioteca-direitos-voltar,
+        .biblioteca-risco-voltar,
+        .biblioteca-ajuda-voltar,
+        .publico-voltar,
+        .por-onde-voltar {
+            border: 1px solid rgba(192, 132, 252, 0.48);
+            background: #28163a;
+            color: #f1ddff;
+        }
+
+        .biblioteca-voltar:hover,
+        .biblioteca-seguranca-voltar:hover,
+        .biblioteca-seguranca-voltar:focus-visible,
+        .biblioteca-direitos-voltar:hover,
+        .biblioteca-direitos-voltar:focus-visible,
+        .biblioteca-risco-voltar:hover,
+        .biblioteca-risco-voltar:focus-visible,
+        .biblioteca-ajuda-voltar:hover,
+        .biblioteca-ajuda-voltar:focus-visible,
+        .publico-voltar:hover,
+        .publico-voltar:focus-visible,
+        .por-onde-voltar:hover,
+        .por-onde-voltar:focus-visible {
+            background: #39204e;
+        }
+
+        .publico-lista .opcao {
+            border-color: var(--borda-violeta);
+            background: #191225;
+            color: #f0e5fa;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035);
+        }
+
+        .publico-lista .opcao:hover,
+        .publico-lista .opcao:focus-visible {
+            border-color: rgba(192, 132, 252, 0.78);
+            background: #251632;
+            box-shadow: 0 0 18px rgba(168, 85, 247, 0.16);
+        }
+
+        .publico-lista .publico-opcao[data-publico] .icone {
+            background: rgba(168, 85, 247, 0.2);
+            color: #d7a5ff;
+        }
+
+        .publico-lista .publico-opcao .seta {
+            color: #cba4e8;
+        }
+
+        .publico-introducao,
+        .publico-detalhe p,
+        .publico-detalhe li {
+            color: #c4b5d4;
+        }
+
+        .publico-detalhe {
+            border-color: var(--borda-violeta);
+            background: linear-gradient(145deg, #1b1327, #120d1b);
+        }
+
+        .publico-detalhe h5 {
+            color: #e4c2ff;
+        }
+
+        .modal {
+            background: rgba(4, 2, 8, 0.82);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-conteudo {
+            border: 1px solid var(--borda-violeta);
+            background: linear-gradient(155deg, #171020 0%, #0e0a15 100%);
+            color: var(--texto-noite);
+            box-shadow: 0 24px 70px rgba(0, 0, 0, 0.62), 0 0 28px rgba(168, 85, 247, 0.12);
+        }
+
+        .modal-cabecalho h2,
+        .informacao h3 {
+            color: #f0e4ff;
+        }
+
+        .modal-descricao {
+            color: #bcaecc;
+        }
+
+        .fechar {
+            border: 1px solid rgba(192, 132, 252, 0.28);
+            background: #281a36;
+            color: #f4eaff;
+        }
+
+        .fechar:hover,
+        .fechar:focus-visible {
+            background: #3a2251;
+        }
+
+        .opcao {
+            border-color: rgba(168, 85, 247, 0.28);
+            background: #21172e;
+            color: #efe3fb;
+        }
+
+        .opcao:hover {
+            background: #2d1c40;
+        }
+
+        .opcao .icone {
+            background: rgba(168, 85, 247, 0.18);
+            color: #d5a2ff;
+        }
+
+        .opcao-seguranca {
+            border-color: rgba(192, 132, 252, 0.48);
+            background: linear-gradient(135deg, #29183b, #1a1226);
+            color: #f2e8ff;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
+        }
+
+        .opcao-seguranca:hover {
+            background: linear-gradient(135deg, #38204f, #21152f);
+        }
+
+        .opcao-violencia {
+            background: #35151f;
+            color: #ffd8dc;
+            border-color: rgba(255, 114, 130, 0.42);
+        }
+
+        .opcao-violencia:hover {
+            background: #4a1b29;
+        }
+
+        .opcao-violencia .icone {
+            background: rgba(232, 44, 75, 0.2);
+            color: #ff9aa6;
+        }
+
+        .informacao {
+            background: #181222;
+            color: #d5c8e2;
+        }
+
+        .informacao p,
+        .informacao li {
+            color: #d0c2df;
+        }
+
+        .acolhimento,
+        .info-seguranca-card {
+            border-color: rgba(168, 85, 247, 0.32);
+            background: #281a38;
+            color: #ebdef8;
+        }
+
+        .acolhimento {
+            border-left-color: #a855f7;
+        }
+
+        .info-seguranca-card h4 {
+            color: #e8c9ff;
+        }
+
+        .voltar {
+            border: 1px solid rgba(192, 132, 252, 0.4);
+            background: linear-gradient(110deg, #7432a8, #4d246f);
+            color: #fff;
+        }
+
+        .voltar:hover,
+        .voltar:focus-visible {
+            background: #843bb9;
+        }
+
+        .assistente-painel {
+            border-color: var(--borda-violeta);
+            background: #120d1b;
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.62), 0 0 24px rgba(168, 85, 247, 0.16);
+        }
+
+        .assistente-cabecalho {
+            background: linear-gradient(120deg, #51227c, #241137);
+        }
+
+        .assistente-preferencias,
+        .assistente-status {
+            border-color: rgba(168, 85, 247, 0.2);
+            background: #171020;
+            color: #c5b5d7;
+        }
+
+        .assistente-preferencias label {
+            color: #c5b5d7;
+        }
+
+        .assistente-preferencias select,
+        .assistente-formulario textarea {
+            border-color: rgba(192, 132, 252, 0.3);
+            background: #0e0a15;
+            color: #f4edff;
+        }
+
+        .assistente-mensagens {
+            background: #0e0a15;
+        }
+
+        .assistente-mensagem {
+            border-color: rgba(168, 85, 247, 0.25);
+            background: #1b1425;
+            color: #e4d9f0;
+        }
+
+        .assistente-mensagem.usuario {
+            border-color: rgba(192, 132, 252, 0.42);
+            background: #39204e;
+            color: #f5eaff;
+        }
+
+        .assistente-sugestoes,
+        .assistente-formulario,
+        .assistente-aviso {
+            border-color: rgba(168, 85, 247, 0.2);
+            background: #120d1b;
+        }
+
+        .assistente-aviso {
+            color: #a99bb9;
+        }
+
+        .assistente-sugestao {
+            border-color: rgba(192, 132, 252, 0.3);
+            background: #1b1425;
+            color: #e2d3f1;
+        }
+
+        .assistente-sugestao:hover {
+            border-color: #b878ee;
+            color: #e8caff;
+        }
+
+        .assistente-acao {
+            border-color: rgba(192, 132, 252, 0.36);
+            background: #281a38;
+            color: #ead5ff;
+        }
+
+        .assistente-enviar {
+            background: linear-gradient(145deg, #a855f7, #6d28a8);
+            box-shadow: 0 0 14px rgba(168, 85, 247, 0.3);
+        }
+
+        .assistente-flutuante .assistente-abrir {
+            background: linear-gradient(130deg, #7330a8, #35174f);
+            border-color: rgba(216, 168, 255, 0.42);
+            box-shadow: 0 0 22px rgba(168, 85, 247, 0.3);
+        }
+
+        .rodape {
+            background: linear-gradient(100deg, #180d25, #2b1242 55%, #160c22);
+            border-top: 1px solid var(--borda-violeta);
+            color: #eee3f8;
+        }
+
+        .rodape small,
+        .rodape .frase {
+            color: #d2bce6;
+        }
+
+        .rodape .linha::before,
+        .rodape .linha::after {
+            background: rgba(192, 132, 252, 0.38);
+        }
+
+        :focus-visible {
+            outline-color: #d8a5ff;
         }
     </style>
 </head>
@@ -2432,6 +3335,12 @@
     </header>
 
     <main class="principal" id="inicio">
+        <div class="inicio-guia">
+            <button class="botao-comecar" id="abrirModalPorOnde" type="button">
+                <span class="botao-icone" aria-hidden="true"><svg class="icon-svg"><use href="#icon-compass"></use></svg></span>
+                POR ONDE COMEÇAR?
+            </button>
+        </div>
         <div class="hero-layout">
             <section class="hero-copy" aria-labelledby="titulo-principal">
                 <p class="hero-etiqueta">Proteção • orientação • escuta • mais segurança</p>
@@ -2439,14 +3348,14 @@
                 <p class="hero-descricao">Encontre informações e orientações para navegar no ambiente digital com mais segurança.</p>
                 <p class="hero-introducao">A Conecta Proteção reúne apoio, informação e orientação em um só lugar para ajudar pessoas a agir com mais segurança, clareza e acolhimento.</p>
                 <div class="botoes-principais">
-                    <button class="botao-informar" id="abrirModalInformar">
-                        <span class="botao-icone" aria-hidden="true"><svg class="icon-svg"><use href="#icon-book"></use></svg></span>
-                        QUERO ME INFORMAR
-                        <span class="botao-seta" aria-hidden="true">›</span>
-                    </button>
                     <button class="botao-ajuda" id="abrirModalAjuda">
                         <span class="botao-icone" aria-hidden="true"><svg class="icon-svg"><use href="#icon-heart"></use></svg></span>
                         PRECISO DE AJUDA
+                        <span class="botao-seta" aria-hidden="true">›</span>
+                    </button>
+                    <button class="botao-informar" id="abrirModalInformar">
+                        <span class="botao-icone" aria-hidden="true"><svg class="icon-svg"><use href="#icon-book"></use></svg></span>
+                        QUERO ME INFORMAR
                         <span class="botao-seta" aria-hidden="true">›</span>
                     </button>
                 </div>
@@ -2503,6 +3412,7 @@
             <div class="biblioteca-header">
                 <p class="biblioteca-etiqueta">Biblioteca Conecta</p>
                 <h3 id="biblioteca-titulo">Informações para orientar e proteger</h3>
+                <button class="por-onde-voltar" id="voltarPorOndeBiblioteca" type="button" hidden>← Voltar</button>
             </div>
 
             <div class="biblioteca-grid" id="biblioteca-lista">
@@ -2532,6 +3442,7 @@
             </div>
 
             <div class="biblioteca-conteudo" id="biblioteca-conteudo">
+                <button class="por-onde-voltar" id="voltarPorOndeConteudo" type="button" hidden>← Voltar</button>
                 <article class="biblioteca-detalhe" id="biblioteca-seguranca">
                     <h4><svg class="icon-inline" aria-hidden="true"><use href="#icon-shield"></use></svg>Segurança digital</h4>
                     <p class="biblioteca-seguranca-intro">A segurança digital ajuda a proteger seus dados, suas contas e seu bem-estar. Escolha um tema para ver orientações práticas para o dia a dia.</p>
@@ -3212,17 +4123,39 @@
 
                 <h3><svg class="icon-inline" aria-hidden="true"><use href="#icon-family"></use></svg>Como ela ajuda cada público</h3>
 
-                <p>
-                    <strong>Crianças e adolescentes:</strong> recebem informações que ajudam a identificar riscos, reconhecer limites e buscar apoio com mais segurança.
-                </p>
+                <p>Escolha seu público para acessar orientações preparadas para suas necessidades.</p>
 
-                <p>
-                    <strong>Pais e responsáveis:</strong> encontram orientações para acolher, conversar e apoiar de forma consciente.
-                </p>
+                <div class="publico-lista" id="listaPublicos" role="group" aria-label="Escolha seu público">
+                    <button class="opcao publico-opcao" type="button" data-publico="criancas">
+                        <span class="icone" aria-hidden="true"><svg class="icon-svg"><use href="#icon-family"></use></svg></span>
+                        <span>Crianças</span><span class="seta">›</span>
+                    </button>
+                    <button class="opcao publico-opcao" type="button" data-publico="adolescentes">
+                        <span class="icone" aria-hidden="true"><svg class="icon-svg"><use href="#icon-users"></use></svg></span>
+                        <span>Adolescentes</span><span class="seta">›</span>
+                    </button>
+                    <button class="opcao publico-opcao" type="button" data-publico="responsaveis">
+                        <span class="icone" aria-hidden="true"><svg class="icon-svg"><use href="#icon-heart"></use></svg></span>
+                        <span>Pais e Responsáveis</span><span class="seta">›</span>
+                    </button>
+                    <button class="opcao publico-opcao" type="button" data-publico="gestores">
+                        <span class="icone" aria-hidden="true"><svg class="icon-svg"><use href="#icon-school"></use></svg></span>
+                        <span>Gestores</span><span class="seta">›</span>
+                    </button>
+                </div>
 
-                <p>
-                    <strong>Gestores e profissionais:</strong> têm acesso a informações que ajudam a pensar em proteção, orientação e cuidado no contexto digital.
-                </p>
+                <section class="publico-area" id="publicoAssuntos" hidden aria-live="polite">
+                    <button class="publico-voltar" id="voltarPublicos" type="button">← Voltar aos públicos</button>
+                    <h4 id="tituloPublico" tabindex="-1"></h4>
+                    <p class="publico-introducao" id="introducaoPublico"></p>
+                    <div class="publico-lista" id="listaAssuntosPublico" aria-label="Assuntos para este público"></div>
+                    <article class="publico-detalhe" id="conteudoAssuntoPublico" hidden aria-live="polite">
+                        <button class="publico-voltar" id="voltarAssuntosPublico" type="button">← Voltar aos assuntos</button>
+                        <h5 id="tituloAssuntoPublico" tabindex="-1"></h5>
+                        <p id="resumoAssuntoPublico"></p>
+                        <ul id="passosAssuntoPublico"></ul>
+                    </article>
+                </section>
 
                 <button class="voltar">Voltar às opções</button>
 
@@ -3230,6 +4163,34 @@
 
         </div>
 
+    </div>
+
+    <div class="modal" id="modalPorOnde" role="dialog" aria-modal="true" aria-labelledby="tituloModalPorOnde" aria-hidden="true" tabindex="-1">
+        <div class="modal-conteudo">
+            <div class="modal-cabecalho">
+                <h2 id="tituloModalPorOnde">Por onde você quer começar?</h2>
+                <button class="fechar" id="fecharModalPorOnde" type="button" aria-label="Fechar Por Onde Começar?">&times;</button>
+            </div>
+            <p class="modal-descricao">Escolha uma opção para encontrar o que procura.</p>
+            <div class="por-onde-grid">
+                <button class="opcao por-onde-card" type="button" data-por-onde="ajuda">
+                    <span class="icone" aria-hidden="true"><svg class="icon-svg"><use href="#icon-alert"></use></svg></span>
+                    <span class="por-onde-texto"><strong>PRECISO DE AJUDA</strong><small>Para quem precisa de orientação ou está passando por uma situação.</small></span>
+                </button>
+                <button class="opcao por-onde-card" type="button" data-por-onde="informar">
+                    <span class="icone" aria-hidden="true"><svg class="icon-svg"><use href="#icon-book"></use></svg></span>
+                    <span class="por-onde-texto"><strong>QUERO ME INFORMAR</strong><small>Para quem quer conhecer os conteúdos e recursos do Conecta Proteção.</small></span>
+                </button>
+                <button class="opcao por-onde-card" type="button" data-por-onde="proteger">
+                    <span class="icone" aria-hidden="true"><svg class="icon-svg"><use href="#icon-shield"></use></svg></span>
+                    <span class="por-onde-texto"><strong>QUERO APRENDER A ME PROTEGER</strong><small>Acesse conteúdos atuais de segurança digital e prevenção. Novos recursos poderão ser incluídos nesta área.</small></span>
+                </button>
+                <button class="opcao por-onde-card" type="button" data-por-onde="canais">
+                    <span class="icone" aria-hidden="true"><svg class="icon-svg"><use href="#icon-phone"></use></svg></span>
+                    <span class="por-onde-texto"><strong>QUERO SABER ONDE BUSCAR AJUDA</strong><small>Para conhecer os canais e serviços de proteção.</small></span>
+                </button>
+            </div>
+        </div>
     </div>
 
     <!-- JANELA PRECISO DE AJUDA -->
@@ -3247,6 +4208,8 @@
                 </button>
 
             </div>
+
+            <button class="por-onde-voltar" id="voltarPorOndeAjuda" type="button" hidden>← Voltar</button>
 
             <p class="modal-descricao">
                 Escolha uma opção para encontrar
@@ -4485,6 +5448,9 @@
     const modalAjuda =
         document.getElementById("modalAjuda");
 
+    const modalPorOnde =
+        document.getElementById("modalPorOnde");
+
     const modalOpeners = new Map();
 
     function getModalFocusableElements(modal) {
@@ -4518,7 +5484,7 @@
         }
     }
 
-    [modalInformar, modalAjuda].forEach(function (modal) {
+    [modalInformar, modalAjuda, modalPorOnde].forEach(function (modal) {
         modal.addEventListener("keydown", function (event) {
             if (event.key !== "Tab" || !modal.classList.contains("ativo")) {
                 return;
@@ -6593,6 +7559,487 @@ if (escolha === "canais" && canaisViolencia) {
                     }
                 }
             });
+        })();
+    </script>
+
+    <script>
+        (function () {
+            const openButton = document.getElementById("abrirModalPorOnde");
+            const modal = document.getElementById("modalPorOnde");
+            const closeButton = document.getElementById("fecharModalPorOnde");
+            const helpModal = document.getElementById("modalAjuda");
+            const helpBackButton = document.getElementById("voltarPorOndeAjuda");
+            const library = document.querySelector(".biblioteca");
+            const libraryHeaderBack = document.getElementById("voltarPorOndeBiblioteca");
+            const libraryContentBack = document.getElementById("voltarPorOndeConteudo");
+
+            function closeStartModal() {
+                fecharModal(modal);
+                libraryHeaderBack.hidden = true;
+                libraryContentBack.hidden = true;
+            }
+
+            function openStartModal() {
+                abrirModal(modal);
+                modalOpeners.set(modal, openButton);
+            }
+
+            function returnFromHelp() {
+                fecharTudo(helpModal);
+                helpBackButton.hidden = true;
+                fecharModal(helpModal);
+                openStartModal();
+            }
+
+            function restoreLibraryRoot() {
+                const activeDetail = library.querySelector(".biblioteca-detalhe.ativo");
+                if (!activeDetail) {
+                    return;
+                }
+
+                const topicBackButtons = activeDetail.querySelectorAll(
+                    ".biblioteca-seguranca-voltar, .biblioteca-direitos-voltar, .biblioteca-risco-voltar, .biblioteca-ajuda-voltar"
+                );
+                const visibleTopicBack = Array.from(topicBackButtons).find(function (button) {
+                    return button.getClientRects().length > 0;
+                });
+                if (visibleTopicBack) {
+                    visibleTopicBack.click();
+                }
+
+                const categoryBack = activeDetail.querySelector(".biblioteca-voltar");
+                if (categoryBack && categoryBack.getClientRects().length > 0) {
+                    categoryBack.click();
+                }
+            }
+
+            function openLibrary(category) {
+                closeStartModal();
+                restoreLibraryRoot();
+
+                libraryHeaderBack.hidden = Boolean(category);
+                libraryContentBack.hidden = !category;
+
+                if (category) {
+                    const card = document.querySelector('[data-biblioteca="' + category + '"]');
+                    if (card) {
+                        card.click();
+                    }
+                }
+
+                library.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+
+            function returnToStartOptions() {
+                libraryHeaderBack.hidden = true;
+                libraryContentBack.hidden = true;
+                openStartModal();
+            }
+
+            openButton.addEventListener("click", function () {
+                abrirModal(modal);
+            });
+
+            closeButton.addEventListener("click", closeStartModal);
+
+            modal.addEventListener("click", function (event) {
+                if (event.target === modal) {
+                    closeStartModal();
+                }
+            });
+
+            document.querySelectorAll("[data-por-onde]").forEach(function (button) {
+                button.addEventListener("click", function () {
+                    const destination = button.dataset.porOnde;
+
+                    if (destination === "ajuda") {
+                        fecharTudo(helpModal);
+                        helpBackButton.hidden = false;
+                        closeStartModal();
+                        abrirModal(helpModal);
+                        return;
+                    }
+
+                    if (destination === "informar") {
+                        openLibrary("");
+                        return;
+                    }
+
+                    if (destination === "proteger") {
+                        openLibrary("seguranca");
+                        return;
+                    }
+
+                    if (destination === "canais") {
+                        openLibrary("ajuda");
+                    }
+                });
+            });
+
+            helpBackButton.addEventListener("click", returnFromHelp);
+            libraryHeaderBack.addEventListener("click", returnToStartOptions);
+            libraryContentBack.addEventListener("click", returnToStartOptions);
+
+            document.querySelectorAll(".biblioteca-card[data-biblioteca]").forEach(function (card) {
+                card.addEventListener("click", function () {
+                    if (!libraryHeaderBack.hidden || !libraryContentBack.hidden) {
+                        libraryHeaderBack.hidden = true;
+                        libraryContentBack.hidden = false;
+                    }
+                });
+            });
+
+            document.querySelectorAll(".biblioteca-voltar").forEach(function (button) {
+                button.addEventListener("click", function () {
+                    if (!libraryHeaderBack.hidden || !libraryContentBack.hidden) {
+                        libraryHeaderBack.hidden = false;
+                        libraryContentBack.hidden = true;
+                    }
+                });
+            });
+
+            document.querySelector("#abrirModalAjuda").addEventListener("click", function () {
+                helpBackButton.hidden = true;
+            });
+
+            document.querySelector("#fecharModalAjuda").addEventListener("click", function () {
+                helpBackButton.hidden = true;
+            });
+
+            helpModal.addEventListener("click", function (event) {
+                if (event.target === helpModal) {
+                    helpBackButton.hidden = true;
+                }
+            });
+
+            document.addEventListener("keydown", function (event) {
+                if (event.key === "Escape") {
+                    if (modal.classList.contains("ativo")) {
+                        closeStartModal();
+                    }
+                    helpBackButton.hidden = true;
+                }
+            });
+        })();
+    </script>
+
+    <script>
+        (function () {
+            const infoPanel = document.getElementById("info-ajuda");
+            const audienceList = document.getElementById("listaPublicos");
+            const audiencePanel = document.getElementById("publicoAssuntos");
+            const audienceTitle = document.getElementById("tituloPublico");
+            const audienceIntroduction = document.getElementById("introducaoPublico");
+            const topicList = document.getElementById("listaAssuntosPublico");
+            const topicContent = document.getElementById("conteudoAssuntoPublico");
+            const topicTitle = document.getElementById("tituloAssuntoPublico");
+            const topicSummary = document.getElementById("resumoAssuntoPublico");
+            const topicSteps = document.getElementById("passosAssuntoPublico");
+            const audienceData = {
+                criancas: {
+                    name: "Crianças",
+                    introduction: "Conteúdos curtos para ajudar você a navegar com mais segurança. Se algo preocupar ou deixar você desconfortável, conte a uma pessoa adulta de confiança.",
+                    topics: [
+                        {
+                            title: "Segurança na internet",
+                            summary: "A internet pode ser um lugar para aprender, conversar e se divertir. Cuide das suas informações e respeite seus próprios limites.",
+                            steps: [
+                                "Não compartilhe endereço, escola, telefone, senhas ou códigos com pessoas na internet.",
+                                "Peça ajuda a um adulto de confiança antes de abrir links estranhos ou conversar com alguém que você não conhece.",
+                                "Você pode parar uma conversa ou atividade quando não se sentir bem."
+                            ]
+                        },
+                        {
+                            title: "Como reconhecer situações de risco",
+                            summary: "Alguns pedidos e atitudes podem ser sinais de que você precisa de apoio.",
+                            steps: [
+                                "Desconfie se alguém pedir segredo, fotos, informações pessoais ou para conversar em outro lugar.",
+                                "Ameaças, pressão, presentes em troca de algo ou pedidos que causam medo merecem atenção.",
+                                "Você não precisa decidir sozinho se uma situação é grave: conte a um adulto de confiança."
+                            ]
+                        },
+                        {
+                            title: "O que fazer quando algo deixa você desconfortável",
+                            summary: "Seu desconforto importa. Você pode pedir ajuda mesmo sem saber explicar exatamente o que aconteceu.",
+                            steps: [
+                                "Pare de responder ou saia da conversa se puder fazer isso com segurança.",
+                                "Conte a alguém adulto em quem confia, como um familiar ou profissional da escola.",
+                                "Você não tem culpa e não precisa resolver a situação sozinho."
+                            ]
+                        },
+                        {
+                            title: "Quem pode ajudar",
+                            summary: "Há pessoas e serviços que podem ouvir você e ajudar a encontrar proteção.",
+                            steps: [
+                                "Procure um familiar, professor ou outro adulto que escute você com respeito.",
+                                "O Conselho Tutelar e o Disque 100 podem orientar sobre a proteção de crianças e adolescentes.",
+                                "Se houver perigo imediato, vá para um local seguro e peça a um adulto que ligue 190."
+                            ]
+                        }
+                    ]
+                },
+                adolescentes: {
+                    name: "Adolescentes",
+                    introduction: "Encontre orientações para cuidar da sua segurança, privacidade e bem-estar digital, sem precisar lidar com situações difíceis sozinho(a).",
+                    topics: [
+                        {
+                            title: "Segurança digital",
+                            summary: "Pequenos cuidados ajudam a proteger suas contas, seus aparelhos e seus dados.",
+                            steps: [
+                                "Use senhas diferentes e ative a verificação em duas etapas quando estiver disponível.",
+                                "Mantenha aparelhos atualizados e revise as permissões de aplicativos.",
+                                "Nunca compartilhe senha ou código de confirmação, mesmo com alguém que diga ser do suporte."
+                            ]
+                        },
+                        {
+                            title: "Privacidade nas redes sociais",
+                            summary: "Você pode escolher o que compartilhar e quem pode ver suas publicações e entrar em contato.",
+                            steps: [
+                                "Revise se o perfil é público, quem pode enviar mensagens e quem pode marcar você.",
+                                "Evite publicar endereço, escola, rotina ou localização em tempo real.",
+                                "Lembre que mensagens e imagens podem ser salvas ou repassadas por outras pessoas."
+                            ]
+                        },
+                        {
+                            title: "Situações de risco",
+                            summary: "Pressão, ameaça ou insistência para ultrapassar seus limites são motivos para buscar apoio.",
+                            steps: [
+                                "Fique atento(a) a pedidos de segredo, dados, imagens ou encontros que deixam você desconfortável.",
+                                "Você pode encerrar a conversa, bloquear ou denunciar o perfil se isso for seguro.",
+                                "Converse com uma pessoa adulta de confiança; não precisa ter certeza do nome da situação para pedir ajuda."
+                            ]
+                        },
+                        {
+                            title: "Manipulação e aliciamento",
+                            summary: "Alguém pode tentar ganhar confiança para pressionar, controlar ou envolver você em uma situação de risco.",
+                            steps: [
+                                "Observe se a pessoa pede segredo, oferece presentes em troca de algo ou tenta mudar a conversa para um canal privado.",
+                                "Não envie imagens, dados ou dinheiro por pressão e não aceite encontrar alguém sem apoio de confiança.",
+                                "Conte o que está acontecendo a um adulto que não esteja envolvido."
+                            ]
+                        },
+                        {
+                            title: "Ameaças e chantagem",
+                            summary: "Você não tem culpa se alguém usa medo ou informações pessoais para tentar obrigar você a fazer algo.",
+                            steps: [
+                                "Não envie mais conteúdo ou dinheiro e não confronte a pessoa sozinho(a).",
+                                "Guarde mensagens ou dados do perfil apenas se isso puder ser feito com segurança; não repasse imagens íntimas.",
+                                "Peça apoio a um adulto de confiança e denuncie o perfil na plataforma."
+                            ]
+                        },
+                        {
+                            title: "Onde buscar ajuda",
+                            summary: "Você pode começar por alguém de confiança ou procurar serviços da rede de proteção.",
+                            steps: [
+                                "Converse com um familiar, profissional da escola ou outro adulto que leve você a sério.",
+                                "O Conselho Tutelar e o Disque 100 orientam sobre violações de direitos de crianças e adolescentes.",
+                                "Em perigo imediato, procure um local seguro e ligue 190."
+                            ]
+                        }
+                    ]
+                },
+                responsaveis: {
+                    name: "Pais e Responsáveis",
+                    introduction: "Orientações para apoiar crianças e adolescentes com escuta, segurança e respeito à privacidade, sem culpabilizar nem pressionar.",
+                    topics: [
+                        {
+                            title: "Como conversar sobre segurança digital",
+                            summary: "Conversas frequentes e sem julgamento ajudam crianças e adolescentes a pedir apoio quando algo preocupa.",
+                            steps: [
+                                "Escolha um momento tranquilo e faça perguntas abertas sobre experiências online.",
+                                "Combine regras de segurança adequadas à idade e explique como pedir ajuda.",
+                                "Reforce que podem falar com você sem medo de serem culpados ou punidos por contar."
+                            ]
+                        },
+                        {
+                            title: "Como identificar sinais de risco",
+                            summary: "Mudanças de comportamento podem ter várias causas; observe com cuidado e converse sem tirar conclusões precipitadas.",
+                            steps: [
+                                "Note mudanças persistentes no humor, sono, uso dos dispositivos ou nas relações sociais.",
+                                "Pergunte como a pessoa está e escute sem exigir detalhes nem investigar por conta própria.",
+                                "Se houver preocupação com segurança, busque orientação profissional ou da rede de proteção."
+                            ]
+                        },
+                        {
+                            title: "Como agir diante de uma situação",
+                            summary: "Priorize a segurança e acolha o relato antes de decidir os próximos passos.",
+                            steps: [
+                                "Verifique se existe perigo imediato e procure um local seguro, se necessário.",
+                                "Escute com calma, preserve apenas informações necessárias se isso for seguro e evite confrontar possíveis envolvidos.",
+                                "Procure a escola, o Conselho Tutelar, serviços de saúde ou outros serviços da rede conforme a situação."
+                            ]
+                        },
+                        {
+                            title: "Como orientar sem culpar",
+                            summary: "Acolhimento e confiança ajudam a pessoa a continuar buscando proteção.",
+                            steps: [
+                                "Agradeça por ela ter contado e diga que a responsabilidade não é dela.",
+                                "Evite perguntas acusatórias, ameaças, punições ou retirar dispositivos como primeira resposta.",
+                                "Explique os próximos passos de forma clara e inclua a criança ou adolescente nas decisões adequadas à idade."
+                            ]
+                        },
+                        {
+                            title: "Onde buscar ajuda",
+                            summary: "A rede de proteção pode orientar a família e encaminhar para serviços adequados à região.",
+                            steps: [
+                                "Procure a escola, serviços de saúde, Conselho Tutelar ou assistência social.",
+                                "O Disque 100 recebe denúncias de violações de direitos humanos e orienta sobre encaminhamentos.",
+                                "Em emergência policial ou perigo imediato, ligue 190."
+                            ]
+                        }
+                    ]
+                },
+                gestores: {
+                    name: "Gestores",
+                    introduction: "Referências para organizar prevenção, resposta e encaminhamento com foco na proteção, na privacidade e nos protocolos locais.",
+                    topics: [
+                        {
+                            title: "Prevenção",
+                            summary: "A prevenção depende de orientações claras, responsabilidades definidas e ambientes em que seja seguro pedir ajuda.",
+                            steps: [
+                                "Estabeleça regras de uso de tecnologias e canais de comunicação adequados ao contexto.",
+                                "Oriente equipes sobre sinais de risco, acolhimento, privacidade e fluxos de encaminhamento.",
+                                "Revise periodicamente os protocolos e os contatos dos serviços locais de proteção."
+                            ]
+                        },
+                        {
+                            title: "Como agir diante de situações de risco",
+                            summary: "Uma resposta coordenada deve priorizar a segurança e evitar exposição ou investigação informal.",
+                            steps: [
+                                "Avalie se há risco imediato e acione emergência quando necessário.",
+                                "Ouça sem pressionar, registre somente o necessário e restrinja o acesso às informações.",
+                                "Siga os protocolos institucionais e as obrigações de comunicação aplicáveis."
+                            ]
+                        },
+                        {
+                            title: "Rede de proteção",
+                            summary: "A articulação entre serviços ajuda a encaminhar cada situação para o apoio adequado.",
+                            steps: [
+                                "Mantenha referências atualizadas de escola, Conselho Tutelar, saúde e assistência social.",
+                                "Considere a segurança da criança ou adolescente ao envolver familiares ou responsáveis.",
+                                "Acione serviços de emergência diante de perigo imediato."
+                            ]
+                        },
+                        {
+                            title: "Orientação e encaminhamento",
+                            summary: "Explique com clareza os próximos passos e acompanhe se a pessoa conseguiu acessar o serviço indicado.",
+                            steps: [
+                                "Informe quais profissionais ou serviços serão envolvidos e por quê.",
+                                "Compartilhe apenas dados pertinentes com quem precisa atuar no caso.",
+                                "Registre encaminhamentos conforme o protocolo local e verifique a continuidade do apoio."
+                            ]
+                        }
+                    ]
+                }
+            };
+
+            let selectedAudience = null;
+            let selectedAudienceKey = null;
+
+            function resetAudienceView() {
+                selectedAudience = null;
+                selectedAudienceKey = null;
+                audienceList.hidden = false;
+                audiencePanel.hidden = true;
+                topicList.hidden = false;
+                topicContent.hidden = true;
+                topicList.replaceChildren();
+                topicSteps.replaceChildren();
+            }
+
+            function openAudience(key) {
+                const audience = audienceData[key];
+                if (!audience) {
+                    return;
+                }
+
+                selectedAudience = audience;
+                selectedAudienceKey = key;
+                audienceList.hidden = true;
+                audiencePanel.hidden = false;
+                topicList.hidden = false;
+                topicContent.hidden = true;
+                audienceTitle.textContent = audience.name;
+                audienceIntroduction.textContent = audience.introduction;
+                topicList.replaceChildren();
+
+                audience.topics.forEach(function (topic, index) {
+                    const button = document.createElement("button");
+                    const label = document.createElement("span");
+                    const arrow = document.createElement("span");
+
+                    button.type = "button";
+                    button.className = "opcao publico-opcao";
+                    button.dataset.publicoAssunto = String(index);
+                    label.textContent = topic.title;
+                    arrow.className = "seta";
+                    arrow.setAttribute("aria-hidden", "true");
+                    arrow.textContent = "›";
+                    button.append(label, arrow);
+                    topicList.appendChild(button);
+                });
+
+                audienceTitle.focus();
+            }
+
+            function openTopic(index) {
+                const topic = selectedAudience && selectedAudience.topics[Number(index)];
+                if (!topic) {
+                    return;
+                }
+
+                topicList.hidden = true;
+                topicContent.hidden = false;
+                topicTitle.textContent = topic.title;
+                topicTitle.dataset.index = String(index);
+                topicSummary.textContent = topic.summary;
+                topicSteps.replaceChildren();
+                topic.steps.forEach(function (step) {
+                    const item = document.createElement("li");
+                    item.textContent = step;
+                    topicSteps.appendChild(item);
+                });
+                topicTitle.focus();
+            }
+
+            audienceList.addEventListener("click", function (event) {
+                const button = event.target.closest("[data-publico]");
+                if (button) {
+                    openAudience(button.dataset.publico);
+                }
+            });
+
+            topicList.addEventListener("click", function (event) {
+                const button = event.target.closest("[data-publico-assunto]");
+                if (button) {
+                    openTopic(button.dataset.publicoAssunto);
+                }
+            });
+
+            document.getElementById("voltarPublicos").addEventListener("click", function () {
+                const previousAudienceKey = selectedAudienceKey;
+                resetAudienceView();
+                const audienceButton = audienceList.querySelector('[data-publico="' + previousAudienceKey + '"]');
+                if (audienceButton) {
+                    audienceButton.focus();
+                }
+            });
+
+            document.getElementById("voltarAssuntosPublico").addEventListener("click", function () {
+                topicContent.hidden = true;
+                topicList.hidden = false;
+                const topicButton = topicList.querySelector('[data-publico-assunto="' + topicTitle.dataset.index + '"]');
+                if (topicButton) {
+                    topicButton.focus();
+                }
+            });
+
+            document.querySelectorAll('[data-info="ajuda"]').forEach(function (button) {
+                button.addEventListener("click", resetAudienceView);
+            });
+
+            const backToInfoOptions = infoPanel.querySelector(":scope > .voltar");
+            backToInfoOptions.addEventListener("click", resetAudienceView);
         })();
     </script>
 
