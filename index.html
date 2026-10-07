@@ -868,6 +868,76 @@
             font-weight: 700;
         }
 
+        .suporte-strip {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+            margin: 24px 0 0;
+            width: min(760px, 100%);
+        }
+
+        .suporte-item {
+            padding: 16px 18px;
+            border: 1px solid rgba(125, 106, 249, 0.15);
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 10px 22px rgba(45, 42, 99, 0.05);
+        }
+
+        .suporte-item strong {
+            display: block;
+            margin-bottom: 6px;
+            color: #2d2a63;
+            font-size: 1rem;
+        }
+
+        .suporte-item span {
+            color: rgba(45, 42, 99, 0.74);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .como-funciona {
+            width: min(1360px, 100%);
+            margin: 8px auto 0;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .como-funciona-card {
+            padding: 22px 20px;
+            border: 1px solid rgba(73, 60, 146, 0.1);
+            border-radius: 20px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.82) 0%, rgba(244,241,255,0.82) 100%);
+            box-shadow: 0 12px 26px rgba(39, 29, 88, 0.05);
+        }
+
+        .como-funciona-numero {
+            display: inline-grid;
+            place-items: center;
+            width: 34px;
+            height: 34px;
+            margin-bottom: 12px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #7d6af9 0%, #5d4da0 100%);
+            color: #fff;
+            font-weight: 800;
+        }
+
+        .como-funciona-card h3 {
+            margin: 0 0 7px;
+            color: #2d2a63;
+            font-size: 1.2rem;
+        }
+
+        .como-funciona-card p {
+            margin: 0;
+            color: rgba(45, 42, 99, 0.78);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
         .biblioteca {
             width: min(1360px, 100%);
             margin: 0 auto 18px;
@@ -2380,6 +2450,21 @@
                         <span class="botao-seta" aria-hidden="true">›</span>
                     </button>
                 </div>
+
+                <div class="suporte-strip" aria-label="Principais pilares do projeto">
+                    <div class="suporte-item">
+                        <strong>Segurança</strong>
+                        <span>Orientações práticas para agir com mais cuidado.</span>
+                    </div>
+                    <div class="suporte-item">
+                        <strong>Direitos</strong>
+                        <span>Informações para reconhecer e proteger seus direitos.</span>
+                    </div>
+                    <div class="suporte-item">
+                        <strong>Apoio</strong>
+                        <span>Canais, redes e pessoas que podem ajudar na prática.</span>
+                    </div>
+                </div>
             </section>
 
             <div class="hero-art" aria-hidden="true">
@@ -2395,6 +2480,24 @@
                 </div>
             </div>
         </div>
+
+        <section class="como-funciona" aria-label="Como a plataforma funciona">
+            <article class="como-funciona-card">
+                <div class="como-funciona-numero">1</div>
+                <h3>Você descreve a situação</h3>
+                <p>Seu relato pode ser breve e confidencial. A plataforma ajuda a orientar sem pressionar nem pedir detalhes desnecessários.</p>
+            </article>
+            <article class="como-funciona-card">
+                <div class="como-funciona-numero">2</div>
+                <h3>Você recebe apoio claro</h3>
+                <p>As informações são organizadas em segurança digital, direitos, riscos e caminhos de ajuda para facilitar a decisão.</p>
+            </article>
+            <article class="como-funciona-card">
+                <div class="como-funciona-numero">3</div>
+                <h3>Você encontra a próxima ação</h3>
+                <p>O objetivo é acolher, orientar e mostrar como buscar proteção de forma segura, respeitosa e prática.</p>
+            </article>
+        </section>
 
         <section class="biblioteca" aria-labelledby="biblioteca-titulo">
             <div class="biblioteca-header">
