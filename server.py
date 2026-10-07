@@ -1,14 +1,29 @@
 import json
+import hashlib
+import getpass
 import os
+import secrets
+import sys
 import threading
 import time
 from collections import defaultdict, deque
+from datetime import datetime, timedelta, timezone
+from http.cookies import CookieError, SimpleCookie
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
-from database import DATABASE_PATH, initialize_database
+from database import (
+    DATABASE_PATH,
+    ROLE_PERMISSIONS,
+    account_for_session,
+    authenticate_account,
+    create_account,
+    create_session,
+    initialize_database,
+    revoke_session,
+)
 
 
 ROOT = Path(__file__).resolve().parent
@@ -19,6 +34,8 @@ MAX_MESSAGE_LENGTH = 1_000
 MAX_REPLY_LENGTH = 2_500
 RATE_LIMIT_REQUESTS = 30
 RATE_LIMIT_WINDOW = 300
+SESSION_COOKIE = "conecta_session"
+SESSION_TTL = 8 * 60 * 60
 ALLOWED_AUDIENCES = {"geral", "jovem", "responsavel", "profissional"}
 ACTION_LABELS = {
     "canais": "Abrir canais de ajuda",
@@ -156,13 +173,15 @@ class ChatHandler(SimpleHTTPRequestHandler):
             return str(ROOT / "__not_found__")
         return str(translated)
 
-    def send_json(self, status, payload):
+    def send_json(self, status, payload, headers=None):
         data = json.dumps(payload, ensure_ascii=False).encode("utf-8")
         self.send_response(status)
         self.send_header("Content-Type", "application/json; charset=utf-8")
         self.send_header("Content-Length", str(len(data)))
         self.send_header("Cache-Control", "no-store")
         self.send_header("X-Content-Type-Options", "nosniff")
+        for name, value in (headers or {}).items():
+            self.send_header(name, value)
         self.end_headers()
         self.wfile.write(data)
 
@@ -200,6 +219,97 @@ class ChatHandler(SimpleHTTPRequestHandler):
                     self.requests_by_client.pop(key, None)
         return True
 
+    def session_token(self):
+        cookie = SimpleCookie()
+        try:
+            cookie.load(self.headers.get("Cookie", ""))
+        except CookieError:
+            return None
+        morsel = cookie.get(SESSION_COOKIE)
+        return morsel.value if morsel else None
+
+    def authenticated_account(self):
+        token = self.session_token()
+        if not token:
+            return None
+        token_hash = hashlib.sha256(token.encode("utf-8")).hexdigest()
+        now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+        return account_for_session(token_hash, now)
+
+    def session_cookie(self, token, max_age):
+        cookie = "%s=%s; Path=/; HttpOnly; SameSite=Strict; Max-Age=%d" % (
+            SESSION_COOKIE,
+            token,
+            max_age,
+        )
+        if os.environ.get("SESSION_COOKIE_SECURE", "0").strip() == "1":
+            cookie += "; Secure"
+        return cookie
+
+    def handle_login(self, payload):
+        username = payload.get("username")
+        password = payload.get("password")
+        if (
+            not isinstance(username, str)
+            or not isinstance(password, str)
+            or len(username) > 64
+            or len(password) > 256
+        ):
+            self.send_error(400)
+            return
+
+        account = authenticate_account(username, password)
+        if account is None:
+            self.send_json(401, {"error": "Nome de usuário ou senha incorretos."})
+            return
+
+        self.start_session(account)
+
+    def handle_register(self, payload):
+        username = payload.get("username")
+        password = payload.get("password")
+        if not isinstance(username, str) or not isinstance(password, str):
+            self.send_error(400)
+            return
+        if len(username) > 64 or len(password) > 256:
+            self.send_error(400)
+            return
+
+        try:
+            account_id = create_account(username, password, "usuario")
+        except ValueError as error:
+            self.send_json(400, {"error": str(error)})
+            return
+
+        account = {"id": account_id, "username": username.strip()}
+        self.start_session(account)
+
+    def start_session(self, account):
+        token = secrets.token_urlsafe(32)
+        token_hash = hashlib.sha256(token.encode("utf-8")).hexdigest()
+        expires_at = (datetime.now(timezone.utc) + timedelta(seconds=SESSION_TTL)).strftime(
+            "%Y-%m-%dT%H:%M:%SZ"
+        )
+        create_session(account["id"], token_hash, expires_at)
+        self.send_json(
+            200,
+            {"authenticated": True, "username": account["username"]},
+            {"Set-Cookie": self.session_cookie(token, SESSION_TTL)},
+        )
+
+    def handle_logout(self):
+        token = self.session_token()
+        if token:
+            token_hash = hashlib.sha256(token.encode("utf-8")).hexdigest()
+            revoked_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+            revoke_session(token_hash, revoked_at)
+
+        self.send_json(
+            200,
+            {"authenticated": False},
+            {"Set-Cookie": self.session_cookie("", 0)},
+        )
+
     def validate_origin(self):
         origin = self.headers.get("Origin")
         if not origin:
@@ -212,7 +322,7 @@ class ChatHandler(SimpleHTTPRequestHandler):
         return bool(origin_host) and origin_host == self.headers.get("Host", "").lower()
 
     def do_POST(self):
-        if self.path != "/api/chat":
+        if self.path not in {"/api/chat", "/api/login", "/api/register", "/api/logout"}:
             self.send_error(404)
             return
         if not self.validate_origin():
@@ -243,6 +353,22 @@ class ChatHandler(SimpleHTTPRequestHandler):
             return
         if not isinstance(payload, dict):
             self.send_error(400)
+            return
+
+        if self.path == "/api/login":
+            self.handle_login(payload)
+            return
+
+        if self.path == "/api/register":
+            self.handle_register(payload)
+            return
+
+        if self.path == "/api/logout":
+            self.handle_logout()
+            return
+
+        if self.authenticated_account() is None:
+            self.send_json(401, {"error": "Entre na sua conta para usar o assistente."})
             return
 
         audience = payload.get("audience", "geral")
@@ -337,18 +463,29 @@ class ChatHandler(SimpleHTTPRequestHandler):
                 "ready": bool(configured_api_key()),
                 "provider": "OpenAI",
                 "databaseReady": DATABASE_PATH.is_file(),
-                "accountsEnabled": False,
+                "accountsEnabled": True,
+            })
+            return
+        if self.path == "/api/auth/status":
+            account = self.authenticated_account()
+            self.send_json(200, {
+                "authenticated": account is not None,
+                "username": account["username"] if account else None,
             })
             return
         super().do_GET()
 
 
 def main():
+    if len(sys.argv) > 1 and sys.argv[1] == "create-user":
+        create_user_from_console()
+        return
+
     load_dotenv()
     host = os.environ.get("HOST", "127.0.0.1")
     port = int(os.environ.get("PORT", "8765"))
     initialize_database()
-    print("Banco de dados privado inicializado.", flush=True)
+    print("Banco local de contas e sessões inicializado.", flush=True)
     server = ThreadingHTTPServer((host, port), ChatHandler)
     server.daemon_threads = True
     print("Conecta Proteção disponível em http://%s:%s" % (host, port), flush=True)
@@ -358,6 +495,26 @@ def main():
         print("\nEncerrando o servidor Conecta Proteção.", flush=True)
     finally:
         server.server_close()
+
+
+def create_user_from_console():
+    initialize_database()
+    username = input("Nome de usuário: ").strip()
+    roles = sorted(ROLE_PERMISSIONS)
+    print("Perfis disponíveis: " + ", ".join(roles))
+    role = input("Perfil [usuario]: ").strip() or "usuario"
+    password = getpass.getpass("Senha (mínimo de 12 caracteres): ")
+    confirmation = getpass.getpass("Confirme a senha: ")
+
+    if password != confirmation:
+        raise SystemExit("As senhas não coincidem. Nenhuma conta foi criada.")
+
+    try:
+        create_account(username, password, role)
+    except ValueError as error:
+        raise SystemExit(str(error)) from error
+
+    print("Conta provisionada.")
 
 
 if __name__ == "__main__":

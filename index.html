@@ -3088,11 +3088,120 @@
             background: linear-gradient(120deg, #51227c, #241137);
         }
 
+        .assistente-login {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 10px;
+            overflow-y: auto;
+            padding: 20px 16px;
+            background: #0e0a15;
+        }
+
+        .assistente-login[hidden],
+        .assistente-login-erro[hidden],
+        .assistente-sair[hidden],
+        .assistente-preferencias[hidden],
+        .assistente-mensagens[hidden],
+        .assistente-sugestoes[hidden],
+        .assistente-formulario[hidden],
+        .assistente-aviso[hidden] {
+            display: none !important;
+        }
+
+        .assistente-login > div {
+            margin-bottom: 8px;
+        }
+
+        .assistente-login > div strong {
+            color: #f4eaff;
+            font-size: 1rem;
+        }
+
+        .assistente-login > div p {
+            margin: 5px 0 0;
+            color: #c4b5d4;
+            font-size: 0.84rem;
+            line-height: 1.5;
+        }
+
+        .assistente-login label {
+            color: #e4d5f2;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .assistente-login input {
+            width: 100%;
+            min-height: 42px;
+            padding: 9px 11px;
+            border: 1px solid rgba(192, 132, 252, 0.3);
+            border-radius: 9px;
+            background: #100b18;
+            color: #f4edff;
+            font: inherit;
+            font-size: 0.88rem;
+        }
+
+        .assistente-login input:focus-visible {
+            outline: 3px solid rgba(192, 132, 252, 0.45);
+            outline-offset: 2px;
+        }
+
+        .assistente-login-submit {
+            min-height: 42px;
+            margin-top: 6px;
+            border: 1px solid rgba(216, 168, 255, 0.44);
+            border-radius: 9px;
+            background: linear-gradient(110deg, #8a35c9, #51227c);
+            color: #fff;
+            font: inherit;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .assistente-login-submit:disabled {
+            cursor: wait;
+            opacity: 0.7;
+        }
+
+        .assistente-login-erro {
+            margin: 2px 0 0;
+            color: #ffadb7;
+            font-size: 0.82rem;
+            line-height: 1.45;
+        }
+
+        .assistente-sair {
+            flex: 0 0 auto;
+            padding: 7px 9px;
+            border: 1px solid rgba(255, 255, 255, 0.24);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.08);
+            color: #f3eaff;
+            font: inherit;
+            font-size: 0.76rem;
+            cursor: pointer;
+        }
+
+        .assistente-sair:hover,
+        .assistente-sair:focus-visible {
+            background: rgba(255, 255, 255, 0.16);
+        }
+
         .assistente-preferencias,
         .assistente-status {
             border-color: rgba(168, 85, 247, 0.2);
             background: #171020;
             color: #c5b5d7;
+        }
+
+        .assistente-status {
+            align-items: flex-start;
+            padding-right: 64px;
+            line-height: 1.4;
+            overflow-wrap: anywhere;
         }
 
         .assistente-preferencias label {
@@ -3966,6 +4075,7 @@
                     <strong>Assistente Conecta</strong>
                     <span>Orientação inicial e caminhos de apoio</span>
                 </span>
+                <button class="assistente-sair" id="sairAssistente" type="button" hidden>Sair</button>
                 <button class="assistente-fechar" id="fecharAssistente" type="button" aria-label="Fechar conversa">
                     <svg class="icon-svg" aria-hidden="true"><use href="#icon-close"></use></svg>
                 </button>
@@ -3982,6 +4092,36 @@
             </div>
 
             <p class="assistente-status" id="statusAssistente" role="status" aria-live="polite">Verificando conexão com a IA…</p>
+
+            <form class="assistente-login" id="formularioLoginAssistente" hidden>
+                <div>
+                    <strong>Entre na sua conta</strong>
+                    <p>O assistente está disponível apenas para usuários autenticados.</p>
+                </div>
+                <label for="usuarioLoginAssistente">Nome de usuário</label>
+                <input id="usuarioLoginAssistente" name="username" type="text" autocomplete="username" minlength="3" maxlength="24" required>
+                <label for="senhaLoginAssistente">Senha</label>
+                <input id="senhaLoginAssistente" name="password" type="password" autocomplete="current-password" minlength="12" maxlength="256" required>
+                <button class="assistente-login-submit" type="submit">Entrar</button>
+                <button class="assistente-login-alternar" id="abrirCadastroAssistente" type="button">Criar conta</button>
+                <p class="assistente-login-erro" id="erroLoginAssistente" role="status" aria-live="polite" hidden></p>
+            </form>
+
+            <form class="assistente-login" id="formularioCadastroAssistente" hidden>
+                <div>
+                    <strong>Criar sua conta</strong>
+                    <p>Escolha um nome de usuário respeitoso e uma senha com pelo menos 12 caracteres.</p>
+                </div>
+                <label for="usuarioCadastroAssistente">Nome de usuário</label>
+                <input id="usuarioCadastroAssistente" name="username" type="text" autocomplete="username" minlength="3" maxlength="24" required>
+                <label for="senhaCadastroAssistente">Senha</label>
+                <input id="senhaCadastroAssistente" name="password" type="password" autocomplete="new-password" minlength="12" maxlength="256" required>
+                <label for="confirmarSenhaAssistente">Confirmar senha</label>
+                <input id="confirmarSenhaAssistente" name="passwordConfirmation" type="password" autocomplete="new-password" minlength="12" maxlength="256" required>
+                <button class="assistente-login-submit" type="submit">Criar conta</button>
+                <button class="assistente-login-alternar" id="voltarLoginAssistente" type="button">Já tenho conta</button>
+                <p class="assistente-login-erro" id="erroCadastroAssistente" role="status" aria-live="polite" hidden></p>
+            </form>
 
             <div class="assistente-mensagens" id="mensagensAssistente" role="log" aria-live="polite" aria-relevant="additions text"></div>
 
@@ -6744,14 +6884,79 @@ if (escolha === "canais" && canaisViolencia) {
             const input = document.getElementById("entradaAssistente");
             const audience = document.getElementById("publicoAssistente");
             const status = document.getElementById("statusAssistente");
+            const loginForm = document.getElementById("formularioLoginAssistente");
+            const loginUsername = document.getElementById("usuarioLoginAssistente");
+            const loginPassword = document.getElementById("senhaLoginAssistente");
+            const loginError = document.getElementById("erroLoginAssistente");
+            const registrationForm = document.getElementById("formularioCadastroAssistente");
+            const registrationUsername = document.getElementById("usuarioCadastroAssistente");
+            const registrationPassword = document.getElementById("senhaCadastroAssistente");
+            const registrationConfirmation = document.getElementById("confirmarSenhaAssistente");
+            const registrationError = document.getElementById("erroCadastroAssistente");
+            const openRegistration = document.getElementById("abrirCadastroAssistente");
+            const backToLogin = document.getElementById("voltarLoginAssistente");
+            const logoutButton = document.getElementById("sairAssistente");
+            const preferences = panel.querySelector(".assistente-preferencias");
+            const suggestions = widget.querySelector(".assistente-sugestoes");
+            const notice = document.getElementById("avisoAssistente");
 
-            if (!widget || !openButton || !closeButton || !panel || !messages || !form || !input || !audience || !status) {
+            if (!widget || !openButton || !closeButton || !panel || !messages || !form || !input || !audience || !status || !loginForm || !loginUsername || !loginPassword || !loginError || !registrationForm || !registrationUsername || !registrationPassword || !registrationConfirmation || !registrationError || !openRegistration || !backToLogin || !logoutButton || !preferences || !suggestions || !notice) {
                 throw new Error("Não foi possível iniciar o Assistente Conecta: faltam elementos da interface.");
             }
 
             let waitingForReply = false;
             let checkingStatus = false;
+            let authenticated = false;
+            let authenticationView = "login";
             let conversation = [];
+
+            function setAuthenticatedView(isAuthenticated) {
+                authenticated = isAuthenticated;
+                loginForm.hidden = isAuthenticated || authenticationView !== "login";
+                registrationForm.hidden = isAuthenticated || authenticationView !== "register";
+                preferences.hidden = !isAuthenticated;
+                messages.hidden = !isAuthenticated;
+                suggestions.hidden = !isAuthenticated;
+                form.hidden = !isAuthenticated;
+                notice.hidden = !isAuthenticated;
+                logoutButton.hidden = !isAuthenticated;
+                if (!isAuthenticated) {
+                    loginPassword.value = "";
+                    registrationPassword.value = "";
+                    registrationConfirmation.value = "";
+                }
+            }
+
+            function showRegistration() {
+                authenticationView = "register";
+                loginError.hidden = true;
+                registrationError.hidden = true;
+                setAuthenticatedView(false);
+                registrationUsername.focus();
+            }
+
+            function showLogin() {
+                authenticationView = "login";
+                loginError.hidden = true;
+                registrationError.hidden = true;
+                setAuthenticatedView(false);
+                loginUsername.focus();
+            }
+
+            async function responseError(response, fallback) {
+                const contentType = response.headers.get("content-type") || "";
+                if (contentType.includes("application/json")) {
+                    try {
+                        const payload = await response.json();
+                        if (typeof payload.error === "string") {
+                            return new Error(payload.error);
+                        }
+                    } catch (error) {
+                        return new Error(fallback);
+                    }
+                }
+                return new Error(fallback);
+            }
 
             function scrollToLatest() {
                 messages.scrollTop = messages.scrollHeight;
@@ -6787,7 +6992,7 @@ if (escolha === "canais" && canaisViolencia) {
 
             async function sendQuestion(question) {
                 const cleanQuestion = question.trim();
-                if (!cleanQuestion || waitingForReply) {
+                if (!authenticated || !cleanQuestion || waitingForReply) {
                     return;
                 }
 
@@ -6812,15 +7017,16 @@ if (escolha === "canais" && canaisViolencia) {
                         })
                     });
                     if (!response.ok) {
-                        const isJson = response.headers.get("content-type") || "";
-                        let serverError = "O servidor de IA recusou a solicitação (" + response.status + ").";
-                        if (isJson.includes("application/json")) {
-                            const errorResult = await response.json();
-                            if (typeof errorResult.error === "string") {
-                                serverError = errorResult.error;
-                            }
+                        if (response.status === 401) {
+                            pendingMessage.remove();
+                            setAuthenticatedView(false);
+                            status.dataset.state = "unavailable";
+                            status.textContent = "Sua sessão expirou. Entre novamente para continuar.";
+                            loginError.textContent = "Entre novamente para continuar a conversa.";
+                            loginError.hidden = false;
+                            return;
                         }
-                        throw new Error(serverError);
+                        throw await responseError(response, "O servidor de IA recusou a solicitação (" + response.status + ").");
                     }
 
                     let result;
@@ -6863,12 +7069,187 @@ if (escolha === "canais" && canaisViolencia) {
                     waitingForReply = false;
                     input.disabled = false;
                     form.querySelector("button[type='submit']").disabled = false;
-                    input.focus();
+                    if (authenticated) {
+                        input.focus();
+                    }
                 }
             }
 
+            async function checkAuthentication() {
+                authenticationView = "login";
+                status.dataset.state = "checking";
+                status.textContent = "Verificando sua sessão…";
+                loginError.hidden = true;
+                registrationError.hidden = true;
+                setAuthenticatedView(false);
+
+                try {
+                    const response = await fetch("/api/auth/status", { cache: "no-store" });
+                    if (!response.ok) {
+                        throw await responseError(response, "Não foi possível verificar sua sessão.");
+                    }
+                    const result = await response.json();
+                    if (result.authenticated === true) {
+                        setAuthenticatedView(true);
+                        await checkApiStatus();
+                        input.focus();
+                        return;
+                    }
+
+                    status.dataset.state = "unavailable";
+                    status.textContent = "Entre na sua conta para usar o assistente.";
+                    loginUsername.focus();
+                } catch (error) {
+                    status.dataset.state = "unavailable";
+                    status.textContent = "Sem conexão com o backend. Abra o endereço informado ao iniciar o servidor.";
+                    loginError.textContent = error instanceof TypeError
+                        ? "Não foi possível conectar ao backend. Inicie o servidor Conecta Proteção e abra o endereço HTTP informado no terminal."
+                        : error instanceof Error
+                            ? error.message
+                            : "Não foi possível verificar sua sessão.";
+                    loginError.hidden = false;
+                }
+            }
+
+            loginForm.addEventListener("submit", async function (event) {
+                event.preventDefault();
+                if (loginForm.querySelector("button[type='submit']").disabled) {
+                    return;
+                }
+
+                const submitButton = loginForm.querySelector("button[type='submit']");
+                submitButton.disabled = true;
+                loginError.hidden = true;
+
+                try {
+                    const response = await fetch("/api/login", {
+                        method: "POST",
+                        cache: "no-store",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            username: loginUsername.value.trim(),
+                            password: loginPassword.value
+                        })
+                    });
+                    if (!response.ok) {
+                        throw await responseError(response, "Não foi possível entrar na sua conta.");
+                    }
+
+                    const result = await response.json();
+                    if (result.authenticated !== true) {
+                        throw new Error("O servidor não confirmou a autenticação.");
+                    }
+
+                    loginPassword.value = "";
+                    authenticationView = "login";
+                    loginError.hidden = true;
+                    setAuthenticatedView(true);
+                    conversation = [];
+                    messages.replaceChildren();
+                    await checkApiStatus();
+                    input.focus();
+                } catch (error) {
+                    loginError.textContent = error instanceof TypeError
+                        ? "Sem conexão com o backend. Inicie o servidor e abra o endereço HTTP informado no terminal."
+                        : error instanceof Error
+                            ? error.message
+                            : "Não foi possível entrar. Tente novamente.";
+                    loginError.hidden = false;
+                } finally {
+                    submitButton.disabled = false;
+                }
+            });
+
+            openRegistration.addEventListener("click", showRegistration);
+            backToLogin.addEventListener("click", showLogin);
+
+            registrationForm.addEventListener("submit", async function (event) {
+                event.preventDefault();
+                const submitButton = registrationForm.querySelector("button[type='submit']");
+                if (submitButton.disabled) {
+                    return;
+                }
+                if (registrationPassword.value !== registrationConfirmation.value) {
+                    registrationError.textContent = "As senhas não coincidem.";
+                    registrationError.hidden = false;
+                    registrationConfirmation.focus();
+                    return;
+                }
+
+                submitButton.disabled = true;
+                registrationError.hidden = true;
+                try {
+                    const response = await fetch("/api/register", {
+                        method: "POST",
+                        cache: "no-store",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            username: registrationUsername.value.trim(),
+                            password: registrationPassword.value
+                        })
+                    });
+                    if (!response.ok) {
+                        throw await responseError(response, "Não foi possível criar a conta.");
+                    }
+
+                    const result = await response.json();
+                    if (result.authenticated !== true) {
+                        throw new Error("O servidor não confirmou a criação da conta.");
+                    }
+
+                    authenticationView = "login";
+                    registrationPassword.value = "";
+                    registrationConfirmation.value = "";
+                    setAuthenticatedView(true);
+                    conversation = [];
+                    messages.replaceChildren();
+                    await checkApiStatus();
+                    input.focus();
+                } catch (error) {
+                    registrationError.textContent = error instanceof TypeError
+                        ? "Sem conexão com o backend. Inicie o servidor e abra o endereço HTTP exibido no terminal."
+                        : error instanceof Error
+                            ? error.message
+                            : "Não foi possível criar a conta. Tente novamente.";
+                    registrationError.hidden = false;
+                } finally {
+                    submitButton.disabled = false;
+                }
+            });
+
+            logoutButton.addEventListener("click", async function () {
+                logoutButton.disabled = true;
+                try {
+                    const response = await fetch("/api/logout", {
+                        method: "POST",
+                        cache: "no-store",
+                        headers: { "Content-Type": "application/json" },
+                        body: "{}"
+                    });
+                    if (!response.ok) {
+                        throw await responseError(response, "Não foi possível encerrar a sessão no servidor.");
+                    }
+
+                    conversation = [];
+                    messages.replaceChildren();
+                    authenticationView = "login";
+                    loginError.hidden = true;
+                    setAuthenticatedView(false);
+                    status.dataset.state = "unavailable";
+                    status.textContent = "Sessão encerrada. Entre na sua conta para usar o assistente.";
+                    loginUsername.focus();
+                } catch (error) {
+                    status.dataset.state = "unavailable";
+                    status.textContent = error instanceof Error
+                        ? error.message
+                        : "Não foi possível confirmar o encerramento da sessão.";
+                } finally {
+                    logoutButton.disabled = false;
+                }
+            });
+
             async function checkApiStatus() {
-                if (checkingStatus) {
+                if (checkingStatus || !authenticated) {
                     return;
                 }
 
@@ -6892,7 +7273,7 @@ if (escolha === "canais" && canaisViolencia) {
                     }
                 } catch (error) {
                     status.dataset.state = "unavailable";
-                    status.textContent = "Sem conexão com a IA. Abra a plataforma no endereço informado ao iniciar o servidor.";
+                    status.textContent = "Sem conexão com a IA. Abra o endereço HTTP informado ao iniciar o servidor Conecta Proteção.";
                 } finally {
                     checkingStatus = false;
                 }
@@ -6935,8 +7316,7 @@ if (escolha === "canais" && canaisViolencia) {
                 openButton.setAttribute("aria-expanded", "true");
                 panel.setAttribute("aria-hidden", "false");
 
-                checkApiStatus();
-                input.focus();
+                checkAuthentication();
             }
 
             function closeChat() {
