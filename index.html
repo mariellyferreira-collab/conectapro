@@ -8,6 +8,17 @@
 
     <title>Conecta Proteção</title>
 
+    <script>
+        (function () {
+            try {
+                const temaSalvo = localStorage.getItem("conecta-protecao-tema");
+                document.documentElement.dataset.tema = temaSalvo === "escuro" ? "escuro" : "claro";
+            } catch (erro) {
+                document.documentElement.dataset.tema = "claro";
+                console.error("Não foi possível carregar a preferência de tema.", erro);
+            }
+        })();
+    </script>
     <style>
         .icon-sprite {
             position: absolute;
@@ -3289,6 +3300,657 @@
         :focus-visible {
             outline-color: #d8a5ff;
         }
+    
+
+        .alternar-tema {
+            width: 42px;
+            height: 42px;
+            display: grid;
+            flex: 0 0 auto;
+            place-items: center;
+            border: 1px solid #d6c9ff;
+            border-radius: 50%;
+            background: #f3f0ff;
+            color: #2d2a63;
+            cursor: pointer;
+            transition: box-shadow 220ms ease;
+        }
+
+        .alternar-tema .icone-tema {
+            grid-area: 1 / 1;
+            width: 21px;
+            height: 21px;
+            stroke-width: 1.7;
+            pointer-events: none;
+            transition: opacity 180ms ease, transform 260ms ease;
+        }
+
+        .alternar-tema .icone-tema-sol {
+            opacity: 0;
+            transform: rotate(28deg) scale(0.72);
+        }
+
+        :root[data-tema="escuro"] .alternar-tema .icone-tema-sol {
+            opacity: 1;
+            transform: rotate(0) scale(1);
+        }
+
+        :root[data-tema="escuro"] .alternar-tema .icone-tema-lua {
+            opacity: 0;
+            transform: rotate(-28deg) scale(0.72);
+        }
+
+        .alternar-tema:focus-visible {
+            outline: 3px solid #7d6af9;
+            outline-offset: 3px;
+        }
+
+        :root[data-tema="escuro"] {
+            --violeta-luz: #c084fc;
+            --violeta: #a855f7;
+            --violeta-profundo: #51227c;
+            --fundo-noite: #09070e;
+            --painel-noite: #110d19;
+            --painel-elevado: #191225;
+            --borda-violeta: rgba(168, 85, 247, 0.32);
+            --texto-noite: #f4edff;
+            --texto-noite-suave: #c0b2d3;
+            --vlibras-btn-focus-visible-shadow: 0 0 0 3px #a855f7;
+
+        body {
+            background: var(--fundo-noite);
+            color: var(--texto-noite);
+        }
+
+        .topo {
+            background: linear-gradient(100deg, #160d24 0%, #241039 55%, #170d24 100%);
+            color: var(--texto-noite);
+            border-bottom: 1px solid var(--borda-violeta);
+            box-shadow: 0 5px 24px rgba(6, 3, 12, 0.48), 0 1px 0 rgba(192, 132, 252, 0.08);
+        }
+
+        .marca {
+            color: var(--texto-noite);
+        }
+
+        .marca-simbolo {
+            background: linear-gradient(145deg, #a855f7 0%, #51227c 100%);
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2), 0 0 20px rgba(168, 85, 247, 0.38);
+        }
+
+        .marca-texto strong {
+            color: #fff;
+        }
+
+        .marca-texto small {
+            color: #cbb9df;
+        }
+
+        .pesquisa-formulario {
+            border-color: rgba(192, 132, 252, 0.3);
+            background: #130d1e;
+            box-shadow: inset 0 0 0 1px rgba(168, 85, 247, 0.04);
+        }
+
+        .pesquisa-formulario:focus-within {
+            outline-color: rgba(192, 132, 252, 0.42);
+        }
+
+        .pesquisa-formulario input {
+            color: var(--texto-noite);
+        }
+
+        .pesquisa-formulario input::placeholder {
+            color: #a999bd;
+        }
+
+        .pesquisa-formulario button {
+            background: linear-gradient(145deg, #a855f7, #6d28a8);
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.28);
+        }
+
+        .pesquisa-formulario button:hover,
+        .pesquisa-formulario button:focus-visible {
+            background: #7e35c0;
+        }
+
+        .nav-link {
+            color: #d4c7e4;
+        }
+
+        .alternar-tema {
+            border-color: rgba(192, 132, 252, 0.48);
+            background: #281a36;
+            color: #f4eaff;
+            box-shadow: 0 0 0 rgba(168, 85, 247, 0);
+        }
+
+        .alternar-tema:hover {
+            box-shadow: 0 4px 12px rgba(168, 85, 247, 0.2);
+        }
+
+        .alternar-tema:focus-visible {
+            outline-color: #d8a5ff;
+        }
+
+        .nav-link.is-active,
+        .nav-link:hover,
+        .nav-link:focus-visible {
+            color: #fff;
+            background: rgba(168, 85, 247, 0.16);
+        }
+
+        .nav-link.is-active::after {
+            background: var(--violeta-luz);
+            box-shadow: 0 0 10px rgba(192, 132, 252, 0.8);
+        }
+
+        .pesquisa-conteudo {
+            border-color: var(--borda-violeta);
+            background: #120d1b;
+            color: var(--texto-noite);
+            box-shadow: 0 22px 60px rgba(0, 0, 0, 0.62), 0 0 22px rgba(127, 51, 177, 0.14);
+        }
+
+        .pesquisa-cabecalho h2,
+        .pesquisa-resultado h3 {
+            color: #e6c8ff;
+        }
+
+        .pesquisa-fechar {
+            background: #251735;
+            color: #f3eaff;
+        }
+
+        .pesquisa-mensagem,
+        .pesquisa-resultado p {
+            color: var(--texto-noite-suave);
+        }
+
+        .pesquisa-resultado,
+        .pesquisa-visualizacao {
+            border-color: var(--borda-violeta);
+            background: #191225;
+        }
+
+        .pesquisa-resultado button,
+        .pesquisa-voltar {
+            background: #6d28a8;
+            color: #fff;
+        }
+
+        .pesquisa-resultado button:hover,
+        .pesquisa-voltar:hover {
+            background: #8137c2;
+        }
+
+        .principal {
+            background: linear-gradient(145deg, #0d0914 0%, #130b1d 52%, #09070e 100%);
+            color: var(--texto-noite);
+        }
+
+        .botao-comecar {
+            border-color: rgba(192, 132, 252, 0.66);
+            background: linear-gradient(110deg, #8a35c9 0%, #51227c 100%);
+            color: #fff;
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+        }
+
+        .botao-comecar .botao-icone {
+            background: rgba(255, 255, 255, 0.14);
+            color: #fff;
+        }
+
+        .botao-comecar:hover,
+        .botao-comecar:focus-visible {
+            border-color: #e1b8ff;
+            background: linear-gradient(110deg, #9b46dc 0%, #60298d 100%);
+            box-shadow: 0 0 26px rgba(168, 85, 247, 0.42);
+        }
+
+        .hero-etiqueta {
+            color: #d9adff;
+        }
+
+        .hero-etiqueta::before {
+            background: linear-gradient(90deg, #8a35c9 0%, #d98aff 100%);
+            box-shadow: 0 0 12px rgba(168, 85, 247, 0.55);
+        }
+
+        .principal h2 {
+            color: #f6efff;
+        }
+
+        .principal h2 span {
+            color: #c084fc;
+            text-shadow: 0 0 24px rgba(168, 85, 247, 0.3);
+        }
+
+        .hero-descricao {
+            color: #d0c4df;
+        }
+
+        .hero-introducao {
+            border-left-color: #a855f7;
+            background: rgba(115, 53, 164, 0.19);
+            color: #e1d4ef;
+        }
+
+        .botao-informar {
+            border-color: rgba(192, 132, 252, 0.54);
+            background: #181122;
+            color: #e9d5ff;
+        }
+
+        .botao-informar .botao-icone {
+            background: rgba(168, 85, 247, 0.19);
+            color: #d8a8ff;
+        }
+
+        .botao-informar:hover,
+        .botao-informar:focus-visible {
+            border-color: #c084fc;
+            background: #21152f;
+            box-shadow: 0 0 18px rgba(168, 85, 247, 0.2);
+        }
+
+        .botao-ajuda {
+            background: linear-gradient(115deg, #f34c61 0%, #c92345 100%);
+            border-color: #ff7282;
+            box-shadow: 0 0 20px rgba(232, 44, 75, 0.26);
+        }
+
+        .suporte-item,
+        .como-funciona-card,
+        .beneficio {
+            border-color: rgba(168, 85, 247, 0.25);
+            background: linear-gradient(145deg, #171020 0%, #110d19 100%);
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.025);
+        }
+
+        .suporte-item strong,
+        .como-funciona-card h3,
+        .beneficio strong {
+            color: #eee2fa;
+        }
+
+        .suporte-item span,
+        .como-funciona-card p,
+        .beneficio span:last-child {
+            color: #b9abc9;
+        }
+
+        .como-funciona-numero {
+            border-color: rgba(216, 168, 255, 0.35);
+            background: linear-gradient(145deg, #8a35c9, #51227c);
+            color: #fff;
+            box-shadow: 0 0 16px rgba(168, 85, 247, 0.24);
+        }
+
+        .biblioteca {
+            border-color: var(--borda-violeta);
+            background: linear-gradient(145deg, #120d1b 0%, #0d0914 100%);
+            box-shadow: 0 14px 32px rgba(0, 0, 0, 0.28), 0 0 22px rgba(127, 51, 177, 0.1);
+        }
+
+        .biblioteca-etiqueta {
+            color: #cf9cff;
+        }
+
+        .biblioteca h3 {
+            color: #f2eaff;
+        }
+
+        .biblioteca-card {
+            border-color: rgba(168, 85, 247, 0.28);
+            background: linear-gradient(150deg, #1d142a 0%, #130e1d 100%);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.035);
+            color: var(--texto-noite);
+        }
+
+        .biblioteca-card:hover,
+        .biblioteca-card:focus-visible {
+            border-color: rgba(192, 132, 252, 0.76);
+            background: linear-gradient(150deg, #29183a 0%, #181022 100%);
+            box-shadow: 0 0 22px rgba(168, 85, 247, 0.2);
+        }
+
+        .biblioteca-card h4 {
+            color: #f2e8ff;
+        }
+
+        .biblioteca-card p,
+        .biblioteca-detalhe p,
+        .biblioteca-detalhe li,
+        .biblioteca-seguranca-intro {
+            color: #c1b3d1;
+        }
+
+        .biblioteca-icone {
+            border-color: rgba(226, 190, 255, 0.25);
+            background: linear-gradient(145deg, #a855f7 0%, #51227c 100%);
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .biblioteca-conteudo {
+            border-color: var(--borda-violeta);
+            background: #100b18;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+        }
+
+        .biblioteca-detalhe h4,
+        .biblioteca-seguranca-tema h5,
+        .biblioteca-direitos-tema h5,
+        .biblioteca-risco-tema h5,
+        .biblioteca-ajuda-tema h5 {
+            color: #e7caff;
+        }
+
+        .biblioteca-seguranca-tema,
+        .biblioteca-direitos-tema,
+        .biblioteca-risco-tema,
+        .biblioteca-ajuda-tema {
+            border-color: var(--borda-violeta);
+            background: linear-gradient(145deg, #191225, #110d19);
+        }
+
+        .biblioteca-risco-resposta,
+        .biblioteca-ajuda-resposta {
+            border-left-color: #a855f7;
+            background: #21152f;
+        }
+
+        .biblioteca-risco-resposta h6,
+        .biblioteca-ajuda-resposta h6 {
+            color: #e7caff;
+        }
+
+        .biblioteca-voltar,
+        .biblioteca-seguranca-voltar,
+        .biblioteca-direitos-voltar,
+        .biblioteca-risco-voltar,
+        .biblioteca-ajuda-voltar,
+        .publico-voltar,
+        .por-onde-voltar {
+            border: 1px solid rgba(192, 132, 252, 0.48);
+            background: #28163a;
+            color: #f1ddff;
+        }
+
+        .biblioteca-voltar:hover,
+        .biblioteca-seguranca-voltar:hover,
+        .biblioteca-seguranca-voltar:focus-visible,
+        .biblioteca-direitos-voltar:hover,
+        .biblioteca-direitos-voltar:focus-visible,
+        .biblioteca-risco-voltar:hover,
+        .biblioteca-risco-voltar:focus-visible,
+        .biblioteca-ajuda-voltar:hover,
+        .biblioteca-ajuda-voltar:focus-visible,
+        .publico-voltar:hover,
+        .publico-voltar:focus-visible,
+        .por-onde-voltar:hover,
+        .por-onde-voltar:focus-visible {
+            background: #39204e;
+        }
+
+        .publico-lista .opcao {
+            border-color: var(--borda-violeta);
+            background: #191225;
+            color: #f0e5fa;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035);
+        }
+
+        .publico-lista .opcao:hover,
+        .publico-lista .opcao:focus-visible {
+            border-color: rgba(192, 132, 252, 0.78);
+            background: #251632;
+            box-shadow: 0 0 18px rgba(168, 85, 247, 0.16);
+        }
+
+        .publico-lista .publico-opcao[data-publico] .icone {
+            background: rgba(168, 85, 247, 0.2);
+            color: #d7a5ff;
+        }
+
+        .publico-lista .publico-opcao .seta {
+            color: #cba4e8;
+        }
+
+        .publico-introducao,
+        .publico-detalhe p,
+        .publico-detalhe li {
+            color: #c4b5d4;
+        }
+
+        .publico-detalhe {
+            border-color: var(--borda-violeta);
+            background: linear-gradient(145deg, #1b1327, #120d1b);
+        }
+
+        .publico-detalhe h5 {
+            color: #e4c2ff;
+        }
+
+        .modal {
+            background: rgba(4, 2, 8, 0.82);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-conteudo {
+            border: 1px solid var(--borda-violeta);
+            background: linear-gradient(155deg, #171020 0%, #0e0a15 100%);
+            color: var(--texto-noite);
+            box-shadow: 0 24px 70px rgba(0, 0, 0, 0.62), 0 0 28px rgba(168, 85, 247, 0.12);
+        }
+
+        .modal-cabecalho h2,
+        .informacao h3 {
+            color: #f0e4ff;
+        }
+
+        .modal-descricao {
+            color: #bcaecc;
+        }
+
+        .fechar {
+            border: 1px solid rgba(192, 132, 252, 0.28);
+            background: #281a36;
+            color: #f4eaff;
+        }
+
+        .fechar:hover,
+        .fechar:focus-visible {
+            background: #3a2251;
+        }
+
+        .opcao {
+            border-color: rgba(168, 85, 247, 0.28);
+            background: #21172e;
+            color: #efe3fb;
+        }
+
+        .opcao:hover {
+            background: #2d1c40;
+        }
+
+        .opcao .icone {
+            background: rgba(168, 85, 247, 0.18);
+            color: #d5a2ff;
+        }
+
+        .opcao-seguranca {
+            border-color: rgba(192, 132, 252, 0.48);
+            background: linear-gradient(135deg, #29183b, #1a1226);
+            color: #f2e8ff;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
+        }
+
+        .opcao-seguranca:hover {
+            background: linear-gradient(135deg, #38204f, #21152f);
+        }
+
+        .opcao-violencia {
+            background: #35151f;
+            color: #ffd8dc;
+            border-color: rgba(255, 114, 130, 0.42);
+        }
+
+        .opcao-violencia:hover {
+            background: #4a1b29;
+        }
+
+        .opcao-violencia .icone {
+            background: rgba(232, 44, 75, 0.2);
+            color: #ff9aa6;
+        }
+
+        .informacao {
+            background: #181222;
+            color: #d5c8e2;
+        }
+
+        .informacao p,
+        .informacao li {
+            color: #d0c2df;
+        }
+
+        .acolhimento,
+        .info-seguranca-card {
+            border-color: rgba(168, 85, 247, 0.32);
+            background: #281a38;
+            color: #ebdef8;
+        }
+
+        .acolhimento {
+            border-left-color: #a855f7;
+        }
+
+        .info-seguranca-card h4 {
+            color: #e8c9ff;
+        }
+
+        .voltar {
+            border: 1px solid rgba(192, 132, 252, 0.4);
+            background: linear-gradient(110deg, #7432a8, #4d246f);
+            color: #fff;
+        }
+
+        .voltar:hover,
+        .voltar:focus-visible {
+            background: #843bb9;
+        }
+
+        .assistente-painel {
+            border-color: var(--borda-violeta);
+            background: #120d1b;
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.62), 0 0 24px rgba(168, 85, 247, 0.16);
+        }
+
+        .assistente-cabecalho {
+            background: linear-gradient(120deg, #51227c, #241137);
+        }
+
+        .assistente-mensagens[hidden],
+        .assistente-sugestoes[hidden],
+        .assistente-formulario[hidden],
+        .assistente-aviso[hidden] {
+            display: none !important;
+        }
+
+        .assistente-status {
+            border-color: rgba(168, 85, 247, 0.2);
+            background: #171020;
+            color: #c5b5d7;
+        }
+
+        .assistente-status {
+            align-items: flex-start;
+            padding-right: 64px;
+            line-height: 1.4;
+            overflow-wrap: anywhere;
+        }
+
+        .assistente-formulario textarea {
+            border-color: rgba(192, 132, 252, 0.3);
+            background: #0e0a15;
+            color: #f4edff;
+        }
+
+        .assistente-mensagens {
+            background: #0e0a15;
+        }
+
+        .assistente-mensagem {
+            border-color: rgba(168, 85, 247, 0.25);
+            background: #1b1425;
+            color: #e4d9f0;
+        }
+
+        .assistente-mensagem.usuario {
+            border-color: rgba(192, 132, 252, 0.42);
+            background: #39204e;
+            color: #f5eaff;
+        }
+
+        .assistente-sugestoes,
+        .assistente-formulario,
+        .assistente-aviso {
+            border-color: rgba(168, 85, 247, 0.2);
+            background: #120d1b;
+        }
+
+        .assistente-aviso {
+            color: #a99bb9;
+        }
+
+        .assistente-sugestao {
+            border-color: rgba(192, 132, 252, 0.3);
+            background: #1b1425;
+            color: #e2d3f1;
+        }
+
+        .assistente-sugestao:hover {
+            border-color: #b878ee;
+            color: #e8caff;
+        }
+
+        .assistente-acao {
+            border-color: rgba(192, 132, 252, 0.36);
+            background: #281a38;
+            color: #ead5ff;
+        }
+
+        .assistente-enviar {
+            background: linear-gradient(145deg, #a855f7, #6d28a8);
+            box-shadow: 0 0 14px rgba(168, 85, 247, 0.3);
+        }
+
+        .assistente-flutuante .assistente-abrir {
+            background: linear-gradient(130deg, #7330a8, #35174f);
+            border-color: rgba(216, 168, 255, 0.42);
+            box-shadow: 0 0 22px rgba(168, 85, 247, 0.3);
+        }
+
+        .rodape {
+            background: linear-gradient(100deg, #180d25, #2b1242 55%, #160c22);
+            border-top: 1px solid var(--borda-violeta);
+            color: #eee3f8;
+        }
+
+        .rodape small,
+        .rodape .frase {
+            color: #d2bce6;
+        }
+
+        .rodape .linha::before,
+        .rodape .linha::after {
+            background: rgba(192, 132, 252, 0.38);
+        }
+
+        :focus-visible {
+            outline-color: #d8a5ff;
+        }
+        }
     </style>
 </head>
 
@@ -3432,6 +4094,15 @@
                 <button class="nav-link" type="button" data-atalho="apoio">Apoio</button>
                 <button class="nav-link" type="button" data-atalho="conscientizacao">Conscientização</button>
             </nav>
+            <button class="alternar-tema" id="alternarTema" type="button" aria-label="Ativar modo escuro" title="Ativar modo escuro">
+                <svg class="icon-svg icone-tema icone-tema-sol" viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="12" cy="12" r="3.7"></circle>
+                    <path d="M12 2.5v2.2m0 14.6v2.2M4.6 4.6l1.55 1.55m11.7 11.7 1.55 1.55M2.5 12h2.2m14.6 0h2.2M4.6 19.4l1.55-1.55m11.7-11.7L19.4 4.6"></path>
+                </svg>
+                <svg class="icon-svg icone-tema icone-tema-lua" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M20.2 14.1A8.3 8.3 0 0 1 9.9 3.8a8.3 8.3 0 1 0 10.3 10.3Z"></path>
+                </svg>
+            </button>
         </div>
         <section class="pesquisa-conteudo" id="painelPesquisa" aria-labelledby="pesquisa-titulo" aria-live="polite">
             <div class="pesquisa-cabecalho">
@@ -4075,53 +4746,14 @@
                     <strong>Assistente Conecta</strong>
                     <span>Orientação inicial e caminhos de apoio</span>
                 </span>
-                <button class="assistente-sair" id="sairAssistente" type="button" hidden>Sair</button>
                 <button class="assistente-fechar" id="fecharAssistente" type="button" aria-label="Fechar conversa">
                     <svg class="icon-svg" aria-hidden="true"><use href="#icon-close"></use></svg>
                 </button>
             </header>
 
-            <div class="assistente-preferencias">
-                <label for="publicoAssistente">Quero conversar como</label>
-                <select id="publicoAssistente">
-                    <option value="geral">Prefiro não informar</option>
-                    <option value="jovem">Criança ou adolescente</option>
-                    <option value="responsavel">Familiar ou responsável</option>
-                    <option value="profissional">Profissional ou educador</option>
-                </select>
-            </div>
+            
 
             <p class="assistente-status" id="statusAssistente" role="status" aria-live="polite">Verificando conexão com a IA…</p>
-
-            <form class="assistente-login" id="formularioLoginAssistente" hidden>
-                <div>
-                    <strong>Entre na sua conta</strong>
-                    <p>O assistente está disponível apenas para usuários autenticados.</p>
-                </div>
-                <label for="usuarioLoginAssistente">Nome de usuário</label>
-                <input id="usuarioLoginAssistente" name="username" type="text" autocomplete="username" minlength="3" maxlength="24" required>
-                <label for="senhaLoginAssistente">Senha</label>
-                <input id="senhaLoginAssistente" name="password" type="password" autocomplete="current-password" minlength="12" maxlength="256" required>
-                <button class="assistente-login-submit" type="submit">Entrar</button>
-                <button class="assistente-login-alternar" id="abrirCadastroAssistente" type="button">Criar conta</button>
-                <p class="assistente-login-erro" id="erroLoginAssistente" role="status" aria-live="polite" hidden></p>
-            </form>
-
-            <form class="assistente-login" id="formularioCadastroAssistente" hidden>
-                <div>
-                    <strong>Criar sua conta</strong>
-                    <p>Escolha um nome de usuário respeitoso e uma senha com pelo menos 12 caracteres.</p>
-                </div>
-                <label for="usuarioCadastroAssistente">Nome de usuário</label>
-                <input id="usuarioCadastroAssistente" name="username" type="text" autocomplete="username" minlength="3" maxlength="24" required>
-                <label for="senhaCadastroAssistente">Senha</label>
-                <input id="senhaCadastroAssistente" name="password" type="password" autocomplete="new-password" minlength="12" maxlength="256" required>
-                <label for="confirmarSenhaAssistente">Confirmar senha</label>
-                <input id="confirmarSenhaAssistente" name="passwordConfirmation" type="password" autocomplete="new-password" minlength="12" maxlength="256" required>
-                <button class="assistente-login-submit" type="submit">Criar conta</button>
-                <button class="assistente-login-alternar" id="voltarLoginAssistente" type="button">Já tenho conta</button>
-                <p class="assistente-login-erro" id="erroCadastroAssistente" role="status" aria-live="polite" hidden></p>
-            </form>
 
             <div class="assistente-mensagens" id="mensagensAssistente" role="log" aria-live="polite" aria-relevant="additions text"></div>
 
@@ -6882,66 +7514,17 @@ if (escolha === "canais" && canaisViolencia) {
             const messages = document.getElementById("mensagensAssistente");
             const form = document.getElementById("formularioAssistente");
             const input = document.getElementById("entradaAssistente");
-            const audience = document.getElementById("publicoAssistente");
             const status = document.getElementById("statusAssistente");
-            const loginForm = document.getElementById("formularioLoginAssistente");
-            const loginUsername = document.getElementById("usuarioLoginAssistente");
-            const loginPassword = document.getElementById("senhaLoginAssistente");
-            const loginError = document.getElementById("erroLoginAssistente");
-            const registrationForm = document.getElementById("formularioCadastroAssistente");
-            const registrationUsername = document.getElementById("usuarioCadastroAssistente");
-            const registrationPassword = document.getElementById("senhaCadastroAssistente");
-            const registrationConfirmation = document.getElementById("confirmarSenhaAssistente");
-            const registrationError = document.getElementById("erroCadastroAssistente");
-            const openRegistration = document.getElementById("abrirCadastroAssistente");
-            const backToLogin = document.getElementById("voltarLoginAssistente");
-            const logoutButton = document.getElementById("sairAssistente");
-            const preferences = panel.querySelector(".assistente-preferencias");
             const suggestions = widget.querySelector(".assistente-sugestoes");
             const notice = document.getElementById("avisoAssistente");
 
-            if (!widget || !openButton || !closeButton || !panel || !messages || !form || !input || !audience || !status || !loginForm || !loginUsername || !loginPassword || !loginError || !registrationForm || !registrationUsername || !registrationPassword || !registrationConfirmation || !registrationError || !openRegistration || !backToLogin || !logoutButton || !preferences || !suggestions || !notice) {
+            if (!widget || !openButton || !closeButton || !panel || !messages || !form || !input || !status || !suggestions || !notice) {
                 throw new Error("Não foi possível iniciar o Assistente Conecta: faltam elementos da interface.");
             }
 
             let waitingForReply = false;
             let checkingStatus = false;
-            let authenticated = false;
-            let authenticationView = "login";
             let conversation = [];
-
-            function setAuthenticatedView(isAuthenticated) {
-                authenticated = isAuthenticated;
-                loginForm.hidden = isAuthenticated || authenticationView !== "login";
-                registrationForm.hidden = isAuthenticated || authenticationView !== "register";
-                preferences.hidden = !isAuthenticated;
-                messages.hidden = !isAuthenticated;
-                suggestions.hidden = !isAuthenticated;
-                form.hidden = !isAuthenticated;
-                notice.hidden = !isAuthenticated;
-                logoutButton.hidden = !isAuthenticated;
-                if (!isAuthenticated) {
-                    loginPassword.value = "";
-                    registrationPassword.value = "";
-                    registrationConfirmation.value = "";
-                }
-            }
-
-            function showRegistration() {
-                authenticationView = "register";
-                loginError.hidden = true;
-                registrationError.hidden = true;
-                setAuthenticatedView(false);
-                registrationUsername.focus();
-            }
-
-            function showLogin() {
-                authenticationView = "login";
-                loginError.hidden = true;
-                registrationError.hidden = true;
-                setAuthenticatedView(false);
-                loginUsername.focus();
-            }
 
             async function responseError(response, fallback) {
                 const contentType = response.headers.get("content-type") || "";
@@ -6992,7 +7575,7 @@ if (escolha === "canais" && canaisViolencia) {
 
             async function sendQuestion(question) {
                 const cleanQuestion = question.trim();
-                if (!authenticated || !cleanQuestion || waitingForReply) {
+                if (!cleanQuestion || waitingForReply) {
                     return;
                 }
 
@@ -7012,20 +7595,11 @@ if (escolha === "canais" && canaisViolencia) {
                         cache: "no-store",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({
-                            audience: audience.value,
+                            audience: "geral",
                             messages: messagesToSend
                         })
                     });
                     if (!response.ok) {
-                        if (response.status === 401) {
-                            pendingMessage.remove();
-                            setAuthenticatedView(false);
-                            status.dataset.state = "unavailable";
-                            status.textContent = "Sua sessão expirou. Entre novamente para continuar.";
-                            loginError.textContent = "Entre novamente para continuar a conversa.";
-                            loginError.hidden = false;
-                            return;
-                        }
                         throw await responseError(response, "O servidor de IA recusou a solicitação (" + response.status + ").");
                     }
 
@@ -7069,187 +7643,12 @@ if (escolha === "canais" && canaisViolencia) {
                     waitingForReply = false;
                     input.disabled = false;
                     form.querySelector("button[type='submit']").disabled = false;
-                    if (authenticated) {
-                        input.focus();
-                    }
+                    input.focus();
                 }
             }
-
-            async function checkAuthentication() {
-                authenticationView = "login";
-                status.dataset.state = "checking";
-                status.textContent = "Verificando sua sessão…";
-                loginError.hidden = true;
-                registrationError.hidden = true;
-                setAuthenticatedView(false);
-
-                try {
-                    const response = await fetch("/api/auth/status", { cache: "no-store" });
-                    if (!response.ok) {
-                        throw await responseError(response, "Não foi possível verificar sua sessão.");
-                    }
-                    const result = await response.json();
-                    if (result.authenticated === true) {
-                        setAuthenticatedView(true);
-                        await checkApiStatus();
-                        input.focus();
-                        return;
-                    }
-
-                    status.dataset.state = "unavailable";
-                    status.textContent = "Entre na sua conta para usar o assistente.";
-                    loginUsername.focus();
-                } catch (error) {
-                    status.dataset.state = "unavailable";
-                    status.textContent = "Sem conexão com o backend. Abra o endereço informado ao iniciar o servidor.";
-                    loginError.textContent = error instanceof TypeError
-                        ? "Não foi possível conectar ao backend. Inicie o servidor Conecta Proteção e abra o endereço HTTP informado no terminal."
-                        : error instanceof Error
-                            ? error.message
-                            : "Não foi possível verificar sua sessão.";
-                    loginError.hidden = false;
-                }
-            }
-
-            loginForm.addEventListener("submit", async function (event) {
-                event.preventDefault();
-                if (loginForm.querySelector("button[type='submit']").disabled) {
-                    return;
-                }
-
-                const submitButton = loginForm.querySelector("button[type='submit']");
-                submitButton.disabled = true;
-                loginError.hidden = true;
-
-                try {
-                    const response = await fetch("/api/login", {
-                        method: "POST",
-                        cache: "no-store",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({
-                            username: loginUsername.value.trim(),
-                            password: loginPassword.value
-                        })
-                    });
-                    if (!response.ok) {
-                        throw await responseError(response, "Não foi possível entrar na sua conta.");
-                    }
-
-                    const result = await response.json();
-                    if (result.authenticated !== true) {
-                        throw new Error("O servidor não confirmou a autenticação.");
-                    }
-
-                    loginPassword.value = "";
-                    authenticationView = "login";
-                    loginError.hidden = true;
-                    setAuthenticatedView(true);
-                    conversation = [];
-                    messages.replaceChildren();
-                    await checkApiStatus();
-                    input.focus();
-                } catch (error) {
-                    loginError.textContent = error instanceof TypeError
-                        ? "Sem conexão com o backend. Inicie o servidor e abra o endereço HTTP informado no terminal."
-                        : error instanceof Error
-                            ? error.message
-                            : "Não foi possível entrar. Tente novamente.";
-                    loginError.hidden = false;
-                } finally {
-                    submitButton.disabled = false;
-                }
-            });
-
-            openRegistration.addEventListener("click", showRegistration);
-            backToLogin.addEventListener("click", showLogin);
-
-            registrationForm.addEventListener("submit", async function (event) {
-                event.preventDefault();
-                const submitButton = registrationForm.querySelector("button[type='submit']");
-                if (submitButton.disabled) {
-                    return;
-                }
-                if (registrationPassword.value !== registrationConfirmation.value) {
-                    registrationError.textContent = "As senhas não coincidem.";
-                    registrationError.hidden = false;
-                    registrationConfirmation.focus();
-                    return;
-                }
-
-                submitButton.disabled = true;
-                registrationError.hidden = true;
-                try {
-                    const response = await fetch("/api/register", {
-                        method: "POST",
-                        cache: "no-store",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({
-                            username: registrationUsername.value.trim(),
-                            password: registrationPassword.value
-                        })
-                    });
-                    if (!response.ok) {
-                        throw await responseError(response, "Não foi possível criar a conta.");
-                    }
-
-                    const result = await response.json();
-                    if (result.authenticated !== true) {
-                        throw new Error("O servidor não confirmou a criação da conta.");
-                    }
-
-                    authenticationView = "login";
-                    registrationPassword.value = "";
-                    registrationConfirmation.value = "";
-                    setAuthenticatedView(true);
-                    conversation = [];
-                    messages.replaceChildren();
-                    await checkApiStatus();
-                    input.focus();
-                } catch (error) {
-                    registrationError.textContent = error instanceof TypeError
-                        ? "Sem conexão com o backend. Inicie o servidor e abra o endereço HTTP exibido no terminal."
-                        : error instanceof Error
-                            ? error.message
-                            : "Não foi possível criar a conta. Tente novamente.";
-                    registrationError.hidden = false;
-                } finally {
-                    submitButton.disabled = false;
-                }
-            });
-
-            logoutButton.addEventListener("click", async function () {
-                logoutButton.disabled = true;
-                try {
-                    const response = await fetch("/api/logout", {
-                        method: "POST",
-                        cache: "no-store",
-                        headers: { "Content-Type": "application/json" },
-                        body: "{}"
-                    });
-                    if (!response.ok) {
-                        throw await responseError(response, "Não foi possível encerrar a sessão no servidor.");
-                    }
-
-                    conversation = [];
-                    messages.replaceChildren();
-                    authenticationView = "login";
-                    loginError.hidden = true;
-                    setAuthenticatedView(false);
-                    status.dataset.state = "unavailable";
-                    status.textContent = "Sessão encerrada. Entre na sua conta para usar o assistente.";
-                    loginUsername.focus();
-                } catch (error) {
-                    status.dataset.state = "unavailable";
-                    status.textContent = error instanceof Error
-                        ? error.message
-                        : "Não foi possível confirmar o encerramento da sessão.";
-                } finally {
-                    logoutButton.disabled = false;
-                }
-            });
 
             async function checkApiStatus() {
-                if (checkingStatus || !authenticated) {
+                if (checkingStatus) {
                     return;
                 }
 
@@ -7315,8 +7714,8 @@ if (escolha === "canais" && canaisViolencia) {
                 widget.classList.add("aberto");
                 openButton.setAttribute("aria-expanded", "true");
                 panel.setAttribute("aria-hidden", "false");
-
-                checkAuthentication();
+                input.focus();
+                checkApiStatus();
             }
 
             function closeChat() {
@@ -7353,11 +7752,6 @@ if (escolha === "canais" && canaisViolencia) {
                     event.preventDefault();
                     form.requestSubmit();
                 }
-            });
-
-            audience.addEventListener("change", function () {
-                status.textContent = "O assistente ajustará a linguagem ao público selecionado.";
-                checkApiStatus();
             });
 
             document.querySelectorAll("[data-assistente-intencao]").forEach(function (button) {
@@ -8433,6 +8827,27 @@ if (escolha === "canais" && canaisViolencia) {
         } else {
             console.error("O VLibras Widget oficial não foi carregado. Verifique a conexão com vlibras.gov.br.");
         }
+    </script>
+
+    <script>
+        (function configurarTema() {
+        const botaoTema = document.getElementById("alternarTema");
+
+        function atualizarBotaoTema() {
+            const modoEscuroAtivo = document.documentElement.dataset.tema === "escuro";
+            const acao = modoEscuroAtivo ? "Ativar modo claro" : "Ativar modo escuro";
+            botaoTema.setAttribute("aria-label", acao);
+            botaoTema.title = acao;
+        }
+
+        atualizarBotaoTema();
+        botaoTema.addEventListener("click", function () {
+            const novoTema = document.documentElement.dataset.tema === "escuro" ? "claro" : "escuro";
+            document.documentElement.dataset.tema = novoTema;
+            localStorage.setItem("conecta-protecao-tema", novoTema);
+            atualizarBotaoTema();
+        });
+    })();
     </script>
 
 </body>
